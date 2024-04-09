@@ -7,4 +7,8 @@ export class UserRepository extends Repository<User> {
   constructor(private dataSource: DataSource) {
       super(User, dataSource.createEntityManager());
   }
+
+  async findOneById(id: number): Promise<User | undefined> {
+    return this.findOne({ where: { id } });
+  }
 }
