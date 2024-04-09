@@ -1,13 +1,13 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { Inject, Injectable } from '@nestjs/common';
 import { Exercise } from 'src/entities/exercise.entity';
 import { Repository } from 'typeorm';
+import { ExerciseRepository } from './exercise.repository';
 
 @Injectable()
 export class ExerciseService {
   constructor(
-    @InjectRepository(Exercise)
-    private exerciseRepository: Repository<Exercise>,
+    @Inject(ExerciseRepository)
+    private exerciseRepository: ExerciseRepository,
   ) {}
   getExercises(): string {
     return 'Hello World!';

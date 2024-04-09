@@ -5,13 +5,15 @@ import { ExerciseService } from './exercise/exercise.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { dataSourceOptions } from 'data-source';
+import { ExerciseModule } from './exercise/exercise.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(dataSourceOptions),
-    UserModule
+    UserModule,
+    ExerciseModule
   ],
   controllers: [AppController],
-  providers: [AppService, ExerciseService],
+  providers: [AppService],
 })
 export class AppModule {}

@@ -7,7 +7,8 @@ import { User } from 'src/entities/user.entity';
 export class UserService {
   constructor(
     @Inject(UserRepository)
-    private readonly userRepository: UserRepository,  ) {}
+    private userRepository: UserRepository
+    ) {}
 
     async findOneById(id: number): Promise<User | undefined> {
       return this.userRepository.findOneById(id);
