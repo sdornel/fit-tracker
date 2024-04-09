@@ -4,12 +4,12 @@ i want to create a full stack application
 i will have angular frontend, nestjs backend, postgres database
 
 DB:
-3 tables. users, userexercises, exercises
+3 tables. users, userexercises, exercises -DONE
 
-users will have profile picture, date created, date updated (last logged in), name, email, password
+users will have profile picture, date created, date updated (last logged in), name, email, password -DONE
 
-exercises will be exercise type, distance (optional field), repetitions (optional field), date created
-^ distance and repetitions cannot both be empty
+exercises will be exercise type, distance (optional field), repetitions (optional field), date created -DONE
+^ distance and repetitions cannot both be empty -DONE
 
 
 backend will ideally have full crud
