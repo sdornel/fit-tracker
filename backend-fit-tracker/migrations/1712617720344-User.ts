@@ -28,6 +28,11 @@ export class User1712617720344 implements MigrationInterface {
                     length: '255',
                 },
                 {
+                    name: 'photo',
+                    type: 'bytea',
+                    isNullable: true,
+                },
+                {
                     name: 'datecreated',
                     type: 'timestamp',
                     default: 'CURRENT_TIMESTAMP',
