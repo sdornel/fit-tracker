@@ -1,1 +1,3 @@
-npx typeorm migration:create src/migration/User
+npx typeorm migration:create migrations/User
+
+see package.json for other scripts
