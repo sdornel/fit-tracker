@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { ExerciseService } from './exercise/exercise.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
-import { dataSourceOptions } from 'data-source';
+import { dataSourceOptions } from 'src/db/data-source';
 import { ExerciseModule } from './exercise/exercise.module';
 
 @Module({

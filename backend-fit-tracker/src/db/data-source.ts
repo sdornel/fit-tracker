@@ -6,7 +6,7 @@ export const dataSourceOptions: DataSourceOptions = {
     username: 'postgres',
     password: '',
     database: 'fit_tracker',
-    migrations: ['dist/migrations/*.js'],
+    migrations: ['dist/db/migrations/*.js'],
 }
 const dataSource = new DataSource(dataSourceOptions)
 export default dataSource
