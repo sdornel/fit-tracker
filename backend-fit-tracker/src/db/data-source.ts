@@ -3,8 +3,10 @@ import { User1712617720344 } from "./migrations/1712617720344-User";
 import { Exercise1712618913405 } from "./migrations/1712618913405-Exercise";
 import { UserExercises1712701607415 } from "./migrations/1712701607415-UserExercises";
 
-// import {} from '../../dist/db/migrations'
+import * as dotenv from 'dotenv';
+dotenv.config();
 
+console.log(`Connecting to database: ${process.env.DB_NAME}`);
 export const dataSourceOptions: DataSourceOptions = {
     type: 'postgres',
     host: process.env.DB_HOST,
