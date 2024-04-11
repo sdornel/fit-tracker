@@ -14,7 +14,7 @@ export class Exercise1712618913405 implements MigrationInterface {
                     generationStrategy: 'increment',
                 },
                 {
-                    name: 'exercisetype',
+                    name: 'exerciseType',
                     type: 'varchar',
                 },
                 {
@@ -26,7 +26,7 @@ export class Exercise1712618913405 implements MigrationInterface {
                     type: 'varchar',
                 },
                 {
-                    name: 'datecreated',
+                    name: 'dateCreated',
                     type: 'timestamp',
                     default: 'CURRENT_TIMESTAMP',
                 },

@@ -33,12 +33,12 @@ export class User1712617720344 implements MigrationInterface {
                     isNullable: true,
                 },
                 {
-                    name: 'datecreated',
+                    name: 'dateCreated',
                     type: 'timestamp',
                     default: 'CURRENT_TIMESTAMP',
                 },
                 {
-                    name: 'dateupdated',
+                    name: 'dateUpdated',
                     type: 'timestamp',
                     default: 'CURRENT_TIMESTAMP',
                 },

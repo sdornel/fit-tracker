@@ -14,6 +14,9 @@ export class User {
   @Column()
   password: string;
 
+  // @Column()
+  // photo: bytea // need to figure this out later this week
+
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   dateCreated: Date;
 
