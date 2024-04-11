@@ -4,7 +4,7 @@ import { Exercise1712618913405 } from "./migrations/1712618913405-Exercise";
 import { UserExercises1712701607415 } from "./migrations/1712701607415-UserExercises";
 
 import * as dotenv from 'dotenv';
-dotenv.config();
+dotenv.config(); // previously .env file was not being detected. this caused me to connect to default db
 
 console.log(`Connecting to database: ${process.env.DB_NAME}`);
 export const dataSourceOptions: DataSourceOptions = {
