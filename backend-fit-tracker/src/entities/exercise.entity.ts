@@ -8,11 +8,11 @@ export class Exercise {
   @Column()
   exerciseType: string;
 
-  @Column()
-  distance: string; // Consider changing the type based on your needs
+  @Column({ nullable: true })
+  distance: string;
 
-  @Column()
-  repetitions: string; // Consider changing the type based on your needs
+  @Column({ nullable: true })
+  repetitions: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   dateCreated: Date;

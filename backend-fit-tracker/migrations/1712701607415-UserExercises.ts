@@ -43,7 +43,7 @@ export class UserExercises1712701607415 implements MigrationInterface {
         // when rolling back, drop foreign keys and then the table itself
         const userExerciseTable = await queryRunner.getTable('userexercise');
 
-        const foreignKeys = userExerciseTable.foreignKeys.filter(fk => fk.columnNames.indexOf('userId') !== -1 || fk.columnNames.indexOf('exerciseId') !== -1);
+        const foreignKeys = userExerciseTable!.foreignKeys.filter(fk => fk.columnNames.indexOf('userId') !== -1 || fk.columnNames.indexOf('exerciseId') !== -1);
         for (const fk of foreignKeys) {
             await queryRunner.dropForeignKey('userexercise', fk);
         }

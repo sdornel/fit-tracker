@@ -7,6 +7,6 @@ export class UserController {
 
   @Get(':id')
   async findOneById(@Param('id', ParseIntPipe) id: number) {
-    return this.userService.findOneById(id);
+    return this.userService.findOne(id);
   }
 }
