@@ -1,4 +1,4 @@
-import dataSource from "../data-source";
+import dataSource from '../data-source';
 
 export async function seedUsers() {
   const user = dataSource.getRepository('user').create({
@@ -11,7 +11,3 @@ export async function seedUsers() {
   
   console.log('Users seeded successfully');
 }
-
-dataSource.initialize()
-  .then(() => seedUsers())
-  .catch((error) => console.log(error));

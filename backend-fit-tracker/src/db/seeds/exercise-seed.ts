@@ -1,4 +1,4 @@
-import dataSource from "../data-source";
+import dataSource from '../data-source';
 
 export async function seedExercises() {
   const exercises = [
@@ -23,7 +23,3 @@ export async function seedExercises() {
 
   console.log('Exercises seeded successfully');
 }
-
-dataSource.initialize()
-  .then(() => seedExercises())
-  .catch((error) => console.log(error));

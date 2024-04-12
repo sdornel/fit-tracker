@@ -1,6 +1,7 @@
-import dataSource from "../data-source";
-import { seedExercises } from "./exercise-seed";
-import { seedUsers } from "./user-seed";
+import dataSource from '../data-source';
+import { seedExercises } from './exercise-seed';
+import { seedUserExercises } from './user-exercise-seed';
+import { seedUsers } from './user-seed';
 
 async function main() {
   try {
@@ -14,6 +15,9 @@ async function main() {
 
     await seedExercises();
     console.log('Exercises have been seeded!');
+
+    await seedUserExercises();
+    console.log('UserExercises have been seeded!');
 
     // Close the data source connection
     await dataSource.destroy();

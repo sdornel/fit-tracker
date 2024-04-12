@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class Exercise1712618913405 implements MigrationInterface {
 
@@ -20,10 +20,12 @@ export class Exercise1712618913405 implements MigrationInterface {
                 {
                     name: 'distance',
                     type: 'varchar',
+                    isNullable: true,
                 },
                 {
                     name: 'repetitions',
                     type: 'varchar',
+                    isNullable: true,
                 },
                 {
                     name: 'dateCreated',
