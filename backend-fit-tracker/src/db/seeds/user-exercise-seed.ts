@@ -10,7 +10,6 @@ export async function seedUserExercises() {
 
     // Retrieve the only user created
     const user = await userRepository.findOneBy({ email: 'john.doe@example.com' });
-    console.log('user', user);
     if (user && runningExercise && pushUpsExercise) {
         user.exercises = [runningExercise, pushUpsExercise];
         // Save the updated user to automatically update the join table
