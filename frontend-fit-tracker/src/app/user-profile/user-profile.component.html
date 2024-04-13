@@ -1,0 +1,7 @@
+<div *ngIf="user; else loading">
+    <h2>{{ user.name }}</h2>
+    <p>Email: {{ user.email }}</p>
+    <img [src]="user.photo" *ngIf="user.photo">
+    <p>Joined: {{ user.dateCreated | date: 'longDate' }}</p>
+</div>
+<ng-template #loading><p>Loading...</p></ng-template>
