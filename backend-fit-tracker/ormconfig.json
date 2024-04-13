@@ -5,7 +5,7 @@
   "username": "postgres",
   "password": "",
   "database": "fit_tracker",
-  "entities": ["dist/src/entities/*.js"],
-  "migrations": ["dist/migrations/*.js"],
+  "entities": ["dist/entities/*.js"],
+  "migrations": ["dist/db/migrations/*.js"],
   "synchronize": false
 }

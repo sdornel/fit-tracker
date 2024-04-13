@@ -1,10 +1,10 @@
-import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm";
+import { MigrationInterface, QueryRunner, Table, TableForeignKey } from 'typeorm';
 
 export class UserExercises1712701607415 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name: 'userexercise',
+            name: 'userexercises',
             columns: [
                 {
                     name: 'id',
@@ -24,14 +24,14 @@ export class UserExercises1712701607415 implements MigrationInterface {
             ],
         }), true);
 
-        await queryRunner.createForeignKey('userexercise', new TableForeignKey({
+        await queryRunner.createForeignKey('userexercises', new TableForeignKey({
             columnNames: ['userId'],
             referencedColumnNames: ['id'],
             referencedTableName: 'user',
             onDelete: 'CASCADE'
         }));
 
-        await queryRunner.createForeignKey('userexercise', new TableForeignKey({
+        await queryRunner.createForeignKey('userexercises', new TableForeignKey({
             columnNames: ['exerciseId'],
             referencedColumnNames: ['id'],
             referencedTableName: 'exercise',
@@ -41,13 +41,13 @@ export class UserExercises1712701607415 implements MigrationInterface {
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         // when rolling back, drop foreign keys and then the table itself
-        const userExerciseTable = await queryRunner.getTable('userexercise');
+        const userExercisesTable = await queryRunner.getTable('userexercises');
 
-        const foreignKeys = userExerciseTable!.foreignKeys.filter(fk => fk.columnNames.indexOf('userId') !== -1 || fk.columnNames.indexOf('exerciseId') !== -1);
+        const foreignKeys = userExercisesTable!.foreignKeys.filter(fk => fk.columnNames.indexOf('userId') !== -1 || fk.columnNames.indexOf('exerciseId') !== -1);
         for (const fk of foreignKeys) {
-            await queryRunner.dropForeignKey('userexercise', fk);
+            await queryRunner.dropForeignKey('userexercises', fk);
         }
 
-        await queryRunner.dropTable('userexercise');
+        await queryRunner.dropTable('userexercises');
     }
 }
