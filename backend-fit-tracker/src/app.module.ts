@@ -6,12 +6,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { dataSourceOptions } from 'src/db/data-source';
 import { ExerciseModule } from './exercise/exercise.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(dataSourceOptions),
     UserModule,
-    ExerciseModule
+    ExerciseModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
