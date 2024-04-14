@@ -28,6 +28,11 @@ export class Exercise1712618913405 implements MigrationInterface {
                     isNullable: true,
                 },
                 {
+                    name: 'resistance',
+                    type: 'varchar',
+                    isNullable: true,
+                },
+                {
                     name: 'dateCreated',
                     type: 'timestamp',
                     default: 'CURRENT_TIMESTAMP',

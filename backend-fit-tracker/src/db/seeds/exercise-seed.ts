@@ -6,11 +6,13 @@ export async function seedExercises() {
       exerciseType: 'Running',
       distance: '5km',
       repetitions: null,
+      resistance: null,
     },
     {
       exerciseType: 'Push-ups',
       distance: null,
       repetitions: '30',
+      resistance: null,
     },
   ];
 

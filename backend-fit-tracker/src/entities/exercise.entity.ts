@@ -15,6 +15,9 @@ export class Exercise {
   @Column({ nullable: true })
   repetitions: string;
 
+  @Column({ nullable: true })
+  resistance: string;
+
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   dateCreated: Date;
 
