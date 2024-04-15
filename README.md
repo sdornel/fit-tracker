@@ -14,14 +14,18 @@ exercises will be exercise type, distance (optional field), repetitions (optiona
 
 backend will ideally have full crud
 users crud -DONE
-^ auth with email/password
+^ auth with email/password -DONE
 exercises crud -DONE
+add new DB column for resistance. -DONE
+
+need to salt passwords with bcrypt!
 
 frontend will have routes!
 add auth for login page with email/password -DONE
-profile page/route (including a user form for updates)
+
+prevent unauthorized users from getting past login page
+profile page/route (including a user form for updates) -WIP
 log workouts page/route
 ^ includes a form to log new activities (distance and reps cannot both be empty)
 3rd route with previous workouts showing everything you did on a certain day
 
-add new DB column for resistance.
