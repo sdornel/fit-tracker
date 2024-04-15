@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, first } from 'rxjs';
 import { environment } from '../../environment';
 import { User } from '../models/user';
 
@@ -10,20 +10,32 @@ import { User } from '../models/user';
 })
 export class AuthService {
   private apiUrl = `${environment.apiUrl}/auth`;
+  userData$ = new Subject<User>();
 
   constructor(private http: HttpClient) {}
 
-  login(loginDetails: { email: string; password: string }): Observable<User> {
+  login(loginDetails: { email: string; password: string }): void {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
       })
     };
 
-    sessionStorage.setItem('authenticated', 'true'); // TEMP. need to make this happen only if user data retrieved successfully (in sub/obs)
-    return this.http.post<User>(`${this.apiUrl}/login`,
+    this.http.post<User>(`${this.apiUrl}/login`,
       loginDetails,
-      httpOptions);
+      httpOptions)
+      .pipe(
+        first()
+      ).subscribe(userData => {
+        // need to ensure i account for null data coming back with no error
+        try {
+          console.log('userData', userData);
+          this.userData$.next(userData);
+          sessionStorage.setItem('authenticated', 'true');
+        } catch (error) {
+          console.error('Error logging in:', error);
+        }
+      });
   }
 
   logout(): void {
