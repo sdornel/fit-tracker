@@ -16,14 +16,14 @@ export class AuthService {
     await queryRunner.connect();
     try {
       const user = await queryRunner.query('SELECT * FROM "users" WHERE "email" = $1', [email]);
-      console.log('Database user found:', user);
-      console.log('Password comparison result:', user[0].password === pass);
       if (user[0] && user[0].password === pass) {
-        const { password, ...result } = user[0];
-        return result;
+          const { password, ...result } = user[0];
+          return result;
       }
+    } catch (error) {
+        console.error('Error accessing the database:', error);
     } finally {
-      await queryRunner.release();
+        await queryRunner.release();
     }
     return null;
   }
