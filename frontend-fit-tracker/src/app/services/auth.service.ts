@@ -19,8 +19,19 @@ export class AuthService {
         'Content-Type':  'application/json',
       })
     };
+
+    sessionStorage.setItem('authenticated', 'true'); // TEMP. need to make this happen only if user data retrieved successfully (in sub/obs)
     return this.http.post<User>(`${this.apiUrl}/login`,
       loginDetails,
       httpOptions);
+  }
+
+  logout(): void {
+    sessionStorage.clear();
+  }
+
+  isAuthenticated(): string | null {
+    return sessionStorage.getItem('authenticated');
+    // return false;
   }
 }
