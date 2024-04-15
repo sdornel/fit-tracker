@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,10 +9,13 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent { 
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+  ) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -23,7 +27,11 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       console.log(this.loginForm.value);
-      // Process login logic here
+      // this.authService.login(this.loginForm.value);
+      this.authService.login(this.loginForm.value).subscribe({
+        next: (user) => console.log('Logged in user:', user),
+        error: (error) => console.error('Login error:', error)
+      });
     }
   }
 }

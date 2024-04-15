@@ -1,26 +1,26 @@
 import { Injectable } from '@nestjs/common';
-import { User } from 'src/entities/user.entity';
+import { Users } from 'src/entities/user.entity';
 import { DataSource, Repository } from 'typeorm';
 
 @Injectable()
-export class UserRepository extends Repository<User> {
+export class UserRepository extends Repository<Users> {
     constructor(private dataSource: DataSource) {
-        super(User, dataSource.createEntityManager());
+        super(Users, dataSource.createEntityManager());
     }
 
-    findAllUsers(): Promise<User[]> {
+    findAllUsers(): Promise<Users[]> {
         return this.find();
     }
     
-    findUserById(id: number): Promise<User> {
+    findUserById(id: number): Promise<Users> {
         return this.findOneBy({ id });
     }
     
-    createUser(user: User): Promise<User> {
+    createUser(user: Users): Promise<Users> {
         return this.save(user);
     }
     
-    async updateExercise(id: number, userData: Partial<User>): Promise<User> {
+    async updateExercise(id: number, userData: Partial<Users>): Promise<Users> {
         const user = await this.findOneBy({ id });
         if (!user) {
           throw new Error(`User not found with id ${id}`);

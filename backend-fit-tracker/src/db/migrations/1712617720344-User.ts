@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class User1712617720344 implements MigrationInterface {
+export class Users1712617720344 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name: 'user',
+            name: 'users',
             columns: [
                 {
                     name: 'id',
@@ -56,16 +56,16 @@ export class User1712617720344 implements MigrationInterface {
         `);
 
         await queryRunner.query(`
-            CREATE TRIGGER update_user_dateupdated BEFORE UPDATE
-            ON "user" FOR EACH ROW
+            CREATE TRIGGER update_users_dateupdated BEFORE UPDATE
+            ON "users" FOR EACH ROW
             EXECUTE FUNCTION update_dateupdated_column();
         `);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`DROP TRIGGER IF EXISTS update_user_dateupdated ON "user"`);
+        await queryRunner.query(`DROP TRIGGER IF EXISTS update_users_dateupdated ON "users"`);
         await queryRunner.query(`DROP FUNCTION IF EXISTS update_dateupdated_column`);
 
-        await queryRunner.dropTable('user');
+        await queryRunner.dropTable('users');
     }
 }

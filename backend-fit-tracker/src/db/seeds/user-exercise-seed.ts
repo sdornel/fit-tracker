@@ -1,7 +1,7 @@
 import dataSource from '../data-source';
 
 export async function seedUserExercises() {
-    const userRepository = dataSource.getRepository('user');
+    const userRepository = dataSource.getRepository('users');
     const exerciseRepository = dataSource.getRepository('exercise');
     
     // Retrieve specific exercises
