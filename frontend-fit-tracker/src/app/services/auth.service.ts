@@ -32,6 +32,5 @@ export class AuthService {
 
   isAuthenticated(): string | null {
     return sessionStorage.getItem('authenticated');
-    // return false;
   }
 }
