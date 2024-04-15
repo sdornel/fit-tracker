@@ -13,11 +13,14 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrl: './user-profile.component.css'
 })
 export class UserProfileComponent implements OnInit {
-  user: User | undefined;
+  user: User | null = null;
 
-  constructor() {}
+  constructor(
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
-
+    console.log('authService', this.authService);
+    this.user = this.authService.user;
   }
 }

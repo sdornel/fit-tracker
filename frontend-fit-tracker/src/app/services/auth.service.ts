@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   private apiUrl = `${environment.apiUrl}/auth`;
-  userData$ = new Subject<User>();
+  user$ = new Subject<User>();
+  user: User | null = null;
 
   constructor(
     private http: HttpClient,
@@ -34,7 +35,8 @@ export class AuthService {
         // need to ensure i account for null data coming back with no error
         try {
           console.log('userData', userData);
-          this.userData$.next(userData);
+          this.user$.next(userData);
+          this.user = userData;
           sessionStorage.setItem('authenticated', 'true');
           this.router.navigate(['/user']);
         } catch (error) {
