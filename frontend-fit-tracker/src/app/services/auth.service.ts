@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject, first } from 'rxjs';
 import { environment } from '../../environment';
 import { User } from '../models/user';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -12,7 +13,10 @@ export class AuthService {
   private apiUrl = `${environment.apiUrl}/auth`;
   userData$ = new Subject<User>();
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   login(loginDetails: { email: string; password: string }): void {
     const httpOptions = {
@@ -32,6 +36,7 @@ export class AuthService {
           console.log('userData', userData);
           this.userData$.next(userData);
           sessionStorage.setItem('authenticated', 'true');
+          this.router.navigate(['/user']);
         } catch (error) {
           console.error('Error logging in:', error);
         }
@@ -40,6 +45,7 @@ export class AuthService {
 
   logout(): void {
     sessionStorage.clear();
+    this.router.navigate(['/login']);
   }
 
   isAuthenticated(): string | null {
