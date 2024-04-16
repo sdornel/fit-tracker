@@ -51,10 +51,18 @@ export class AuthService {
     return this.http.get<User>(`${this.apiUrl}/profile`, { withCredentials: true })
       .pipe(
         map(user => {
-          this.user = user;
-          this.userSubject.next(user);
-          this.isAuthenticated$.next(true);
-          return true;
+          if (user) {
+            this.user = user;
+            this.userSubject.next(user);
+            this.isAuthenticated$.next(true);
+            return true;
+          } else {
+            this.user = null;
+            this.userSubject.next(null);
+            this.isAuthenticated$.next(false);
+            return false;
+
+          }
         }),
         catchError(error => {
           console.error('Authentication error:', error);
