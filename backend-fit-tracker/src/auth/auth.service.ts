@@ -17,7 +17,7 @@ export class AuthService {
   async validateUser(email: string, pass: string): Promise<any> {
     const queryRunner = this.dataSource.createQueryRunner();
     await queryRunner.connect();
-    // const user = await queryRunner.query('SELECT * FROM "users" WHERE "email" = $1', [email]);
+
     this.user = (await queryRunner.query('SELECT * FROM "users" WHERE "email" = $1', [email]))[0];
     if (this.user && this.user.password === pass) {
       const { password, ...result } = this.user;
