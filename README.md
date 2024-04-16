@@ -11,6 +11,7 @@ exercises will have exercise type, distance (optional field), repetitions (optio
 join table -DONE
 
 
+BACKEND
 backend will ideally have full crud
 users crud -DONE
 ^ auth with email/password -DONE
@@ -22,6 +23,9 @@ need to salt passwords with bcrypt!
 add auth for login page with email/password -DONE
 prevent unauthorized users from getting past login page -DONE
 
+
+FRONTEND
+login page -DONE
 frontend will have routes! -WIP
 
 implement logout functionality
