@@ -17,20 +17,19 @@ users crud -DONE
 ^ auth with email/password -DONE
 exercises crud -DONE
 add new DB column for resistance. -DONE
-
-need to salt passwords with bcrypt!
-
 add auth for login page with email/password -DONE
 prevent unauthorized users from getting past login page -DONE
+==============================================================
+need to salt passwords with bcrypt!
 
 
 FRONTEND
 login page -DONE
+==============================================================
 frontend will have routes! -WIP
-
-implement logout functionality
-
 profile page/route (including a user form for updates) -WIP
+==============================================================
+implement logout functionality
 log workouts page/route
 ^ includes a form to log new activities (distance and reps cannot both be empty)
 3rd route with previous workouts showing everything you did on a certain day
