@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject, first } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription, catchError, first, map, of } from 'rxjs';
 import { environment } from '../../environment';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
@@ -11,8 +11,12 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   private apiUrl = `${environment.apiUrl}/auth`;
-  user$ = new Subject<User>();
+
+  isAuthenticated = false;
+  private isAuthenticated$ = new BehaviorSubject<boolean>(false);
   user: User | null = null;
+  private userSubject = new BehaviorSubject<User | null>(null);
+  user$ = this.userSubject.asObservable(); 
 
   constructor(
     private http: HttpClient,
@@ -20,24 +24,17 @@ export class AuthService {
   ) {}
 
   login(loginDetails: { email: string; password: string }): void {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-      })
-    };
-
     this.http.post<User>(`${this.apiUrl}/login`,
       loginDetails,
-      httpOptions)
+      { withCredentials: true },
+    )
       .pipe(
         first()
       ).subscribe(userData => {
         // need to ensure i account for null data coming back with no error
         try {
-          console.log('userData', userData);
-          this.user$.next(userData);
+          this.userSubject.next(userData);
           this.user = userData;
-          sessionStorage.setItem('authenticated', 'true');
           this.router.navigate(['/user']);
         } catch (error) {
           console.error('Error logging in:', error);
@@ -46,11 +43,29 @@ export class AuthService {
   }
 
   logout(): void {
-    sessionStorage.clear();
+    // incomplete! you need to add API route
     this.router.navigate(['/login']);
   }
 
-  isAuthenticated(): string | null {
-    return sessionStorage.getItem('authenticated');
+  checkAuthentication(): any {
+    return this.http.get<User>(`${this.apiUrl}/profile`, { withCredentials: true })
+      .pipe(
+        map(user => {
+          this.user = user;
+          this.userSubject.next(user);
+          this.isAuthenticated$.next(true);
+          return true;
+        }),
+        catchError(error => {
+          console.error('Authentication error:', error);
+          this.userSubject.next(null);
+          this.isAuthenticated$.next(false);
+          return of(false); // remember that of is deprecated
+        })
+      );
+  }
+
+  get isLoggedIn(): Observable<boolean> {
+    return this.isAuthenticated$.asObservable();
   }
 }
