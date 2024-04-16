@@ -10,7 +10,7 @@ import { UserProfileEditComponent } from './edit/user-profile-edit.component';
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, DatePipe, UserProfileEditComponent],
+  imports: [CommonModule, DatePipe, UserProfileEditComponent],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
 })
