@@ -20,7 +20,6 @@ export class UserProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log('authService', this.authService);
     this.user = this.authService.user;
   }
 }
