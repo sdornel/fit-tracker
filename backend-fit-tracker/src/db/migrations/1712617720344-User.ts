@@ -49,7 +49,7 @@ export class Users1712617720344 implements MigrationInterface {
             CREATE OR REPLACE FUNCTION update_dateupdated_column()
             RETURNS TRIGGER AS $$
             BEGIN
-                NEW.dateupdated = NOW();
+                NEW."dateUpdated" = NOW();
                 RETURN NEW;
             END;
             $$ LANGUAGE 'plpgsql';
