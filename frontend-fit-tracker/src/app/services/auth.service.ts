@@ -47,7 +47,7 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-  checkAuthentication(): any {
+  checkAuthentication(): Observable<boolean> {
     return this.http.get<User>(`${this.apiUrl}/profile`, { withCredentials: true })
       .pipe(
         map(user => {
