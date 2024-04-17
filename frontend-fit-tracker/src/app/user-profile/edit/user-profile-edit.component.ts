@@ -1,40 +1,60 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { User } from '../../models/user';
+import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-profile-edit',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './user-profile-edit.component.html',
-  styleUrls: ['./user-profile-edit.component.css']
+  styleUrls: ['./user-profile-edit.component.css'],
+  imports: [ReactiveFormsModule, MatDialogModule],
+  standalone: true,
 })
-export class UserProfileEditComponent {
-  @Input() user: any;  // Use the appropriate user type
+export class UserProfileEditComponent implements OnInit, OnChanges {
+  @Input() user: any;
   @Output() updateUser = new EventEmitter<any>();
-  userForm: FormGroup;
+  userForm!: FormGroup;
+  imagePreview: string | ArrayBuffer | null = null;
 
-  constructor() {
+  constructor() {}
+
+  ngOnInit(): void {
+    this.buildForm();
+  }
+
+  buildForm(): void {
     this.userForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      photo: new FormControl('')
+      photo: new FormControl('', []),
     });
   }
 
   ngOnChanges() {
-    if (this.user) {
+    if (this.user && this.userForm) {
       this.userForm.setValue({
         name: this.user.name,
         email: this.user.email,
-        photo: this.user.photo
       });
+      if (this.user.photo) {
+        this.imagePreview = this.user.photo;
+      }
+    }
+  }
+
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result;
+      };
+      reader.readAsDataURL(file);
+      this.userForm.patchValue({ photo: file });
     }
   }
 
   onSubmit() {
-    if (this.userForm.valid) {
-      this.updateUser.emit(this.userForm.value);
-    }
+    this.updateUser.emit(this.userForm.value);
   }
 }
