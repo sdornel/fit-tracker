@@ -20,7 +20,7 @@ export class UserRepository extends Repository<Users> {
         return this.save(user);
     }
     
-    async updateExercise(id: number, userData: Partial<Users>): Promise<Users> {
+    async updateUser(id: number, userData: Partial<Users>): Promise<Users> {
         const user = await this.findOneBy({ id });
         if (!user) {
           throw new Error(`User not found with id ${id}`);
