@@ -29,6 +29,9 @@ login page -DONE
 frontend will have routes! -WIP
 profile page/route (including a user form for updates) -WIP
 ==============================================================
+user edit form fields -DONE
+user edit file upload functionality
+user edit modal should close upon submit
 implement logout functionality
 log workouts page/route
 ^ includes a form to log new activities (distance and reps cannot both be empty)
