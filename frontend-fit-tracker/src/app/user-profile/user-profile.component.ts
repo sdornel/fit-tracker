@@ -6,6 +6,7 @@ import { AuthService } from '../services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserProfileEditComponent } from './edit/user-profile-edit.component';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -21,6 +22,7 @@ export class UserProfileComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private userService: UserService,
     private formBuilder: FormBuilder
   ) {}
 
@@ -33,6 +35,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   handleUpdate(updatedUser: User) {
-    console.log('updatedUser', updatedUser);
+    this.userService.updateUser(updatedUser);
   }
 }
