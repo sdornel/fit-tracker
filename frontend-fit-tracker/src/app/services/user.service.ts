@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class UserService {
-  private apiUrl = `${environment.apiUrl}/user`;
+  private apiUrl = `${environment.apiUrl}/users`;
 
   user: User | null = null;
   private userSubject = new BehaviorSubject<User | null>(null);
@@ -21,7 +21,8 @@ export class UserService {
     private router: Router
   ) {}
 
-  updateUser(updatedUser: User) {
+  updateUser(id: number, updatedUser: User) {
     console.log('updatedUser', updatedUser);
+    return this.http.patch<User>(`${this.apiUrl}/${id}`, updatedUser);
   }
 }

@@ -24,10 +24,10 @@ export class UserProfileEditComponent implements OnInit, OnChanges {
 
   buildForm(): void {
     this.userForm = new FormGroup({
-      name: new FormControl(''),
-      email: new FormControl('', [Validators.email]),
-      password: new FormControl(''),
-      photo: new FormControl(''),
+      name: new FormControl(null),
+      email: new FormControl(null, [Validators.email]),
+      password: new FormControl(null),
+      photo: new FormControl(null),
     });
   }
 
@@ -57,7 +57,6 @@ export class UserProfileEditComponent implements OnInit, OnChanges {
 
   onSubmit() {
     const updatedUser = {
-      id: this.user.id,
       ...this.userForm.value
     }
     this.updateUser.emit(updatedUser);

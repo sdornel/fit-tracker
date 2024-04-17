@@ -35,6 +35,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   handleUpdate(updatedUser: User) {
-    this.userService.updateUser(updatedUser);
+    this.userService.updateUser(this.user!.id, updatedUser).subscribe();
   }
 }

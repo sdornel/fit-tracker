@@ -14,7 +14,7 @@ export class AuthService {
 
   isAuthenticated = false;
   private isAuthenticated$ = new BehaviorSubject<boolean>(false);
-  user: User | null = null;
+  user!: User | null;
   private userSubject = new BehaviorSubject<User | null>(null);
   user$ = this.userSubject.asObservable(); 
 
