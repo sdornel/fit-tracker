@@ -23,7 +23,7 @@ export class UserService {
   }
 
   async update(id: number, exercise: Partial<Users>): Promise<Users> {
-    return this.userRepository.updateExercise(id, exercise);
+    return this.userRepository.updateUser(id, exercise);
   }
 
   remove(id: number): Promise<void> {
