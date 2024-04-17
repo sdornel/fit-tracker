@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, UpdateDateColumn, CreateDateColumn } from 'typeorm';
 import { Exercise } from './exercise.entity';
 
 @Entity()
@@ -15,13 +15,24 @@ export class Users {
   @Column()
   password: string;
 
-  // @Column()
+  // @Column({ nullable: true })
   // photo: bytea // need to figure this out later this week
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  // @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @CreateDateColumn({
+    type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)'
+  })
   dateCreated: Date;
 
-  @Column({ type: 'timestamp' })
+  // @Column({
+  //   type: 'timestamp',
+  //   onUpdate: 'CURRENT_TIMESTAMP'
+  // })
+  @UpdateDateColumn({
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP(6)',
+    onUpdate: 'CURRENT_TIMESTAMP(6)',
+  })
   dateUpdated: Date;
 
   @ManyToMany(() => Exercise, exercise => exercise.users)
