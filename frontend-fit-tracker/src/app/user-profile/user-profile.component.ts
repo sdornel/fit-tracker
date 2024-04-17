@@ -26,47 +26,13 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.authService.user;
-    // this.buildForm();
   }
 
   toggleModal(open: boolean) {
     this.isModalOpen = open;
   }
 
-  handleUpdate(updatedUser: any) {
+  handleUpdate(updatedUser: User) {
     console.log('updatedUser', updatedUser);
-    // this.authService.updateUser(updatedUser).subscribe({
-    //   next: (user) => {
-    //     this.user = user;
-    //     this.toggleModal(false);
-    //   },
-    //   error: (error) => {
-    //     console.error('Error updating user:', error);
-    //     this.toggleModal(false);
-    //   }
-    // });
   }
-
-  // buildForm(): void {
-  //   this.profileForm = this.formBuilder.group({
-  //     name: ['', Validators.required],
-  //     email: ['', [Validators.required, Validators.email]],
-  //     photo: ['']
-  //   });
-  // }
-
-  // onSubmit() {
-  //   console.log('Updated profile:', this.profileForm.value);
-  // }
-
-  // onFileSelected(event: any) {
-  //   const file = event.target.files[0];
-  //   // if (file) {
-  //   //   const reader = new FileReader();
-  //   //   reader.onload = (e: any) => {
-  //   //     this.profileForm.controls.photo.setValue(e.target.result);
-  //   //   };
-  //   //   reader.readAsDataURL(file);
-  //   // }
-  // }
 }
