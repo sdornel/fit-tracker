@@ -24,9 +24,9 @@ export class UserProfileEditComponent implements OnInit, OnChanges {
 
   buildForm(): void {
     this.userForm = new FormGroup({
-      name: new FormControl(null),
-      email: new FormControl(null, [Validators.email]),
-      password: new FormControl(null),
+      name: new FormControl(this.user.name, [Validators.required]),
+      email: new FormControl(this.user.email, [Validators.email]),
+      password: new FormControl(this.user.password, [Validators.required]),
       photo: new FormControl(null),
     });
   }
