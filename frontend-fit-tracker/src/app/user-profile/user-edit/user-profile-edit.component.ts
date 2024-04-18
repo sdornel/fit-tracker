@@ -72,8 +72,17 @@ export class UserProfileEditComponent implements OnInit, OnChanges {
       ...this.user,
       ...this.userForm.value
     }
+    console.log('updatedUser', updatedUser);
     if (this.dialogRef) {
-      this.dialogRef.close(updatedUser);
+      // this.dialogRef.close(updatedUser);
+      const formData = new FormData();
+      formData.append('user', JSON.stringify(updatedUser));
+      const photo = this.userForm.value.photo;
+      if (photo) {
+        formData.append('file', photo, photo.name);
+      }
+      console.log('formData', formData);
+      this.dialogRef.close(formData);
     }
   }
 }
