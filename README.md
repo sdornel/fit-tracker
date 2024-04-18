@@ -25,13 +25,13 @@ user edit file upload functionality for database
 
 
 FRONTEND
+user edit form fields -DONE
+user edit file upload functionality -DONE
 login page -DONE
 ==============================================================
 frontend will have routes! -WIP
 profile page/route (including a user form for updates) -WIP
 ==============================================================
-user edit form fields -DONE
-user edit file upload functionality -DONE
 user edit modal should close upon submit
 implement logout functionality
 log workouts page/route
