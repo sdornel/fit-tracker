@@ -3,13 +3,6 @@
     <h2>{{ user.name }}</h2>
     <p>Email: {{ user.email }}</p>
     <p>Start date: {{ user.dateCreated | date: 'longDate' }}</p>
-    <button (click)="toggleModal(true)" class="btn btn-primary">Edit Details</button>
+    <button mat-raised-button (click)="openDialog()" class="btn btn-primary">Edit Details</button>
 </div>
 <ng-template #loading><p>Loading...</p></ng-template>
-
-<div class="modal" *ngIf="isModalOpen">
-    <div class="modal-content">
-      <span class="close" (click)="toggleModal(false)">&times;</span>
-      <app-user-profile-edit [user]="user" (updateUser)="handleUpdate($event)"></app-user-profile-edit>
-    </div>
-</div>

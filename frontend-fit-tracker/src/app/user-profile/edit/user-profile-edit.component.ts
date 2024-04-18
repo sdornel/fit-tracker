@@ -19,9 +19,7 @@ export class UserProfileEditComponent implements OnInit, OnChanges {
   constructor(
     private dialogRef: MatDialogRef<UserProfileEditComponent>,
     @Inject(MAT_DIALOG_DATA) public user: User
-  ) {
-    console.log('user', user);
-  }
+  ) {}
 
   ngOnInit(): void {
     this.buildForm();

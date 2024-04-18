@@ -7,6 +7,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserProfileEditComponent } from './edit/user-profile-edit.component';
 import { UserService } from '../services/user.service';
+import {
+  MatDialog,
+} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-profile',
@@ -23,18 +26,28 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private userService: UserService,
-    private formBuilder: FormBuilder
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit() {
     this.user = this.authService.user;
   }
 
-  toggleModal(open: boolean) {
-    this.isModalOpen = open;
+  openDialog() {
+    const dialogRef = this.dialog.open(UserProfileEditComponent, {
+      data: this.user,
+      width: '380px',
+      height: 'auto',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+      this.handleUpdate(this.user!.id, result)
+      this.user = result;
+    });
   }
 
-  handleUpdate(updatedUser: User) {
-    this.userService.updateUser(this.user!.id, updatedUser).subscribe();
+  handleUpdate(userId: number, updatedUser: User) {
+    this.userService.updateUser(userId, updatedUser).subscribe();
   }
 }
