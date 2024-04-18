@@ -15,19 +15,14 @@ export class Users {
   @Column()
   password: string;
 
-  // @Column({ nullable: true })
-  // photo: bytea // need to figure this out later this week
+  @Column({ type: 'bytea', nullable: true })
+  photo: Buffer;
 
-  // @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   @CreateDateColumn({
     type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)'
   })
   dateCreated: Date;
 
-  // @Column({
-  //   type: 'timestamp',
-  //   onUpdate: 'CURRENT_TIMESTAMP'
-  // })
   @UpdateDateColumn({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',
