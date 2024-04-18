@@ -36,8 +36,6 @@ export class UserProfileComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(UserProfileEditComponent, {
       data: this.user,
-      width: '380px',
-      height: 'auto',
     });
 
     dialogRef.afterClosed().subscribe(result => {
