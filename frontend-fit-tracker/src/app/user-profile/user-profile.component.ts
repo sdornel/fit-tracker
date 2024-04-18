@@ -42,8 +42,10 @@ export class UserProfileComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
-      this.handleUpdate(this.user!.id, result)
-      this.user = result;
+      if (result) {
+        this.handleUpdate(this.user!.id, result)
+        this.user = result;
+      }
     });
   }
 
