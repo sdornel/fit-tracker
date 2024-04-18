@@ -13,8 +13,6 @@ export class UserController {
 
   @Patch(':id')
   update(@Param('id', ParseIntPipe) id: number, @Body() user: Partial<Users>) {
-    console.log('id', id);
-    console.log('user', user);
     return this.userService.update(id, user);
   }
 }

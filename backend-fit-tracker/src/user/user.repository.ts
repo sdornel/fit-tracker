@@ -22,7 +22,6 @@ export class UserRepository extends Repository<Users> {
     
     async updateUser(id: number, userData: Partial<Users>): Promise<Users> {
         const user = await this.findOneBy({ id });
-        console.log('user stuff', user, userData);
         if (!user) {
           throw new Error(`User not found with id ${id}`);
         }
