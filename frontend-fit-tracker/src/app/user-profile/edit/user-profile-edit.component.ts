@@ -1,22 +1,27 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnChanges, Optional, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { User } from '../../models/user';
-import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-user-profile-edit',
   templateUrl: './user-profile-edit.component.html',
   styleUrls: ['./user-profile-edit.component.css'],
-  imports: [ReactiveFormsModule, MatDialogModule],
+  imports: [ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatInputModule],
   standalone: true,
 })
 export class UserProfileEditComponent implements OnInit, OnChanges {
-  @Input() user: any;
-  @Output() updateUser = new EventEmitter<any>();
   userForm!: FormGroup;
   imagePreview: string | ArrayBuffer | null = null;
 
-  constructor() {}
+  constructor(
+    private dialogRef: MatDialogRef<UserProfileEditComponent>,
+    @Inject(MAT_DIALOG_DATA) public user: User
+  ) {
+    console.log('user', user);
+  }
 
   ngOnInit(): void {
     this.buildForm();
@@ -57,8 +62,11 @@ export class UserProfileEditComponent implements OnInit, OnChanges {
 
   onSubmit() {
     const updatedUser = {
+      ...this.user,
       ...this.userForm.value
     }
-    this.updateUser.emit(updatedUser);
+    if (this.dialogRef) {
+      this.dialogRef.close(updatedUser);
+    }
   }
 }
