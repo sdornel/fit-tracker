@@ -3,9 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { User } from '../models/user';
 import { CommonModule, DatePipe } from '@angular/common';
 import { AuthService } from '../services/auth.service';
-import { HttpClientModule } from '@angular/common/http';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { UserProfileEditComponent } from './edit/user-profile-edit.component';
+import { FormGroup } from '@angular/forms';
+import { UserProfileEditComponent } from './user-edit/user-profile-edit.component';
 import { UserService } from '../services/user.service';
 import {
   MatDialog,
