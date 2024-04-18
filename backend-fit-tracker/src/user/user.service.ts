@@ -18,12 +18,12 @@ export class UserService {
     return this.userRepository.findUserById(id);
   }
 
-  create(exercise: Exercise): Promise<Users> {
-    return this.userRepository.save(exercise);
+  create(user: Users): Promise<Users> {
+    return this.userRepository.save(user);
   }
 
-  async update(id: number, exercise: Partial<Users>): Promise<Users> {
-    return this.userRepository.updateUser(id, exercise);
+  async update(id: number, user: Partial<Users>): Promise<Users> {
+    return this.userRepository.updateUser(id, user);
   }
 
   remove(id: number): Promise<void> {
