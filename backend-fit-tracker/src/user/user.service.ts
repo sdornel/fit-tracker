@@ -22,8 +22,8 @@ export class UserService {
     return this.userRepository.save(user);
   }
 
-  async update(id: number, user: Partial<Users>): Promise<Users> {
-    return this.userRepository.updateUser(id, user);
+  async update(id: number, user: Partial<Users>, file: any): Promise<Users> {
+    return this.userRepository.updateUser(id, user, file);
   }
 
   remove(id: number): Promise<void> {
