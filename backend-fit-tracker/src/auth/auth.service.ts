@@ -17,9 +17,9 @@ export class AuthService {
     const queryRunner = this.dataSource.createQueryRunner();
     await queryRunner.connect();
 
-    this.user = (await queryRunner.query('SELECT * FROM "users" WHERE "email" = $1', [email]))[0];
-    if (this.user && this.user.password === pass) {
-      const { password, ...result } = this.user;
+    const user = (await queryRunner.query('SELECT * FROM "users" WHERE "email" = $1', [email]))[0];
+    if (user && user.password === pass) {
+      const { password, ...result } = user;
       return result;
     }
     return null;
@@ -32,9 +32,8 @@ export class AuthService {
     };
   }
 
-  validateToken(token: string) {
-    return this.jwtService.verify(token, {
-        secret : process.env.JWT_SECRET_KEY
-    });
+  async validateToken(token: string) {
+    const decoded = this.jwtService.verify(token, { secret: process.env.JWT_SECRET_KEY });
+    return this.dataSource.getRepository(Users).findOneBy({ id: decoded.sub }); // returns a user
   }
 }

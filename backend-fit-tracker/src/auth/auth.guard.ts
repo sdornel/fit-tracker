@@ -14,15 +14,17 @@ export class AuthGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     try {
       const request = context.switchToHttp().getRequest();
-
       if (!request.get('cookie')) {
         throw new UnauthorizedException('Please provide token');
       }
       const authorization: string = request.get('cookie');
       const authToken = authorization.replace(/Authentication=/gim, '');
 
-      const resp = await this.authService.validateToken(authToken);
-      request.decodedData = resp;
+      const user = await this.authService.validateToken(authToken);
+      if (!user) {
+        throw new UnauthorizedException();
+      }
+      request.user = user;
       return true;
     } catch (error) {
       console.error('auth error -', error.message);
