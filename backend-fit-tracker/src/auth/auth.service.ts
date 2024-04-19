@@ -6,12 +6,12 @@ import { DataSource } from "typeorm";
 
 @Injectable()
 export class AuthService {
+  user: Users = null;
+
   constructor(
     private dataSource: DataSource,
     private jwtService: JwtService
   ) {}
-  
-  user: Users = null;
 
   async validateUser(email: string, pass: string): Promise<any> {
     const queryRunner = this.dataSource.createQueryRunner();
