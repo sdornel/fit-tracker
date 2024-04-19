@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { User } from '../models/user';
 import { CommonModule, DatePipe } from '@angular/common';
 import { AuthService } from '../services/auth.service';
 import { FormGroup } from '@angular/forms';
 import { UserProfileEditComponent } from './user-edit/user-profile-edit.component';
 import { UserService } from '../services/user.service';
-import {
-  MatDialog,
-} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-profile',
@@ -30,6 +27,10 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.authService.user;
+    console.log('user', this.user);
+    if (this.user?.photo) {
+      // this.userService.convertArrayBufferToBase64(this.user);
+    }
   }
 
   openDialog() {
@@ -40,7 +41,8 @@ export class UserProfileComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
       if (result) {
-        this.handleUpdate(this.user!.id, result)
+        this.handleUpdate(this.user!.id, result);
+        // this.userService.convertArrayBufferToBase64(this.user);
         this.user = result;
       }
     });

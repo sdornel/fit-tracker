@@ -13,8 +13,8 @@ export class UserService {
   private apiUrl = `${environment.apiUrl}/users`;
 
   user: User | null = null;
-  private userSubject = new BehaviorSubject<User | null>(null);
-  user$ = this.userSubject.asObservable(); 
+  // private userSubject = new BehaviorSubject<User | null>(null);
+  // user$ = this.userSubject.asObservable(); 
 
   constructor(
     private http: HttpClient,
@@ -23,6 +23,31 @@ export class UserService {
 
   updateUser(id: number, updatedUser: User) {
     console.log('updatedUser', updatedUser);
-    return this.http.patch<User>(`${this.apiUrl}/${id}`, updatedUser);
+    const formData = new FormData();
+    formData.append('name', updatedUser.name);
+    formData.append('email', updatedUser.email);
+    formData.append('password', updatedUser.password);
+
+    if (updatedUser.photo) {
+      formData.append('photo', updatedUser.photo);
+    }
+    return this.http.patch<User>(`${this.apiUrl}/${id}`, formData);
+    // return this.http.patch<User>(`${this.apiUrl}/${id}`, updatedUser);
   }
+
+  // convertArrayBufferToBase64(user: any): void {
+  //   if (user.photo && user.photo.data) {
+  //     const byteArray = new Uint8Array(user.photo.data);
+  //     const blob = new Blob([byteArray], { type: 'image/jpeg' });
+  
+  //     const reader = new FileReader();
+  //     reader.onload = () => {
+  //       user.photoBase64 = reader.result as string;
+  //     };
+  //     reader.onerror = (error) => {
+  //       console.error('Error converting file:', error);
+  //     };
+  //     reader.readAsDataURL(blob);
+  //   }
+  // }
 }

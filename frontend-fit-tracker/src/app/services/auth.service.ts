@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, Subject, Subscription, catchError, first, 
 import { environment } from '../../environment';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
+import { UserService } from './user.service';
 
 
 @Injectable({
@@ -20,7 +21,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private userService: UserService,
   ) {}
 
   login(loginDetails: { email: string; password: string }): void {
@@ -30,9 +32,11 @@ export class AuthService {
     )
       .pipe(
         first()
-      ).subscribe(userData => {
+      ).subscribe((userData) => {
         // need to ensure i account for null data coming back with no error
         try {
+          console.log('userData', userData);
+          // this.userService.convertArrayBufferToBase64(userData);
           this.userSubject.next(userData);
           this.user = userData;
           this.router.navigate(['/user']);
@@ -51,8 +55,11 @@ export class AuthService {
     return this.http.get<User>(`${this.apiUrl}/profile`, { withCredentials: true })
       .pipe(
         map(user => {
+          console.log('checkAuthentication func');
+          // debugger
           if (user) {
             this.user = user;
+            // this.userService.convertArrayBufferToBase64(user);
             this.userSubject.next(user);
             this.isAuthenticated$.next(true);
             return true;
