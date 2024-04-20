@@ -15,8 +15,10 @@ export class Users {
   @Column()
   password: string;
 
-  @Column({ type: 'bytea', nullable: true })
-  photo: Buffer;
+  @Column({
+    nullable: true,
+  })
+  photo?: string;
 
   @CreateDateColumn({
     type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)'

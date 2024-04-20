@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject, Subscription, catchError, first, map, of } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription, catchError, first, map, of, switchMap } from 'rxjs';
 import { environment } from '../../environment';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
+import { UserService } from './user.service';
 
 
 @Injectable({
@@ -20,7 +21,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private userService: UserService,
   ) {}
 
   login(loginDetails: { email: string; password: string }): void {
@@ -30,9 +32,10 @@ export class AuthService {
     )
       .pipe(
         first()
-      ).subscribe(userData => {
+      ).subscribe((userData) => {
         // need to ensure i account for null data coming back with no error
         try {
+          console.log('userData', userData);
           this.userSubject.next(userData);
           this.user = userData;
           this.router.navigate(['/user']);
@@ -52,16 +55,18 @@ export class AuthService {
       .pipe(
         map(user => {
           if (user) {
+            if (user?.photo) {
+              user.photoUrl = `http://localhost:3000/uploads/${user.photo}`;
+            }
+  
             this.user = user;
             this.userSubject.next(user);
             this.isAuthenticated$.next(true);
             return true;
           } else {
-            this.user = null;
-            this.userSubject.next(null);
-            this.isAuthenticated$.next(false);
-            return false;
-
+              this.userSubject.next(null);
+              this.isAuthenticated$.next(false);
+              return false;
           }
         }),
         catchError(error => {
@@ -69,9 +74,10 @@ export class AuthService {
           this.userSubject.next(null);
           this.isAuthenticated$.next(false);
           return of(false); // remember that of is deprecated
-        })
+        }),
       );
   }
+
 
   get isLoggedIn(): Observable<boolean> {
     return this.isAuthenticated$.asObservable();

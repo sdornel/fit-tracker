@@ -22,9 +22,17 @@ export class UserService {
     return this.userRepository.save(user);
   }
 
-  async update(id: number, user: Partial<Users>, file: any): Promise<Users> {
-    return this.userRepository.updateUser(id, user, file);
+  async update(id: number, user: Partial<Users>, file: Express.Multer.File): Promise<Users> {
+    if (file) {
+      file.filename.replace('jpg', 'png');
+      file.filename.replace('jpeg', 'png');
+      const filePath = `uploads/${file.filename}`;
+      user.photo = filePath; // save the file path
+    }
+
+    return this.userRepository.updateUser(id, user);
   }
+
 
   remove(id: number): Promise<void> {
     return this.userRepository.delete(id).then(() => {});

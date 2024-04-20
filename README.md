@@ -21,7 +21,11 @@ add auth for login page with email/password -DONE
 prevent unauthorized users from getting past login page -DONE
 ==============================================================
 need to salt passwords with bcrypt!
-user edit file upload functionality for database
+
+FRONTEND AND BACKEND
+user edit file upload and fetch functionality -DONE (but...)
+^ when i update a user photo i need to delete the old photo in uploads folder
+^ i don't really like how i did it but for now i will leave it as is
 
 
 FRONTEND
@@ -32,7 +36,7 @@ login page -DONE
 frontend will have routes! -WIP
 profile page/route (including a user form for updates) -WIP
 ==============================================================
-user edit modal should close upon submit
+user edit modal should close upon submit -DONE
 implement logout functionality
 log workouts page/route
 ^ includes a form to log new activities (distance and reps cannot both be empty)

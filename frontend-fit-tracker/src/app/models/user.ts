@@ -3,7 +3,8 @@ export interface User {
     name: string;
     email: string;
     password: string;
-    photo: string;
+    photo?: any;
+    photoUrl?: string;
     dateCreated: Date;
     dateUpdated: Date;
 }

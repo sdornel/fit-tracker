@@ -20,15 +20,10 @@ export class UserRepository extends Repository<Users> {
         return this.save(user);
     }
     
-    async updateUser(id: number, userData: Partial<Users>, file: any): Promise<Users> {
-        // console.log('userData', userData);
+    async updateUser(id: number, userData: Partial<Users>): Promise<Users> {
         const user = await this.findOneBy({ id });
         if (!user) {
           throw new Error(`User not found with id ${id}`);
-        }
-
-        if (file) {
-            user.photo = file.buffer; // convert uploaded file buffer directly for storage
         }
 
         // merge existing fields with the ones to be updated

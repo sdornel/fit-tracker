@@ -1,5 +1,5 @@
 <div *ngIf="user; else loading">
-    <img [src]="user.photo ? user.photo : 'assets/user-image-placeholder.jpg'" alt="User Photo" class="user-image">
+    <img [src]="photoUrlPath ? photoUrlPath : 'assets/user-image-placeholder.jpg'" alt="User Photo" class="user-image">
     <h2>{{ user.name }}</h2>
     <p>Email: {{ user.email }}</p>
     <p>Start date: {{ user.dateCreated | date: 'longDate' }}</p>
