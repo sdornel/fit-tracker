@@ -13,6 +13,9 @@ export class Exercise {
   distance: string;
 
   @Column({ nullable: true })
+  time: string;
+
+  @Column({ nullable: true })
   repetitions: string;
 
   @Column({ nullable: true })

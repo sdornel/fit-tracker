@@ -13,6 +13,7 @@ export async function seedExercises(queryRunner) {
     {
       exerciseType: 'Push-ups',
       distance: null,
+      time: null,
       repetitions: '30',
       resistance: null,
     },

@@ -23,6 +23,11 @@ export class Exercise1712618913405 implements MigrationInterface {
                     isNullable: true,
                 },
                 {
+                    name: 'time',
+                    type: 'varchar',
+                    isNullable: true,
+                },
+                {
                     name: 'repetitions',
                     type: 'varchar',
                     isNullable: true,
@@ -43,15 +48,15 @@ export class Exercise1712618913405 implements MigrationInterface {
         // either repetitions or distance must not be null
         await queryRunner.query(`
         ALTER TABLE "exercise"
-        ADD CONSTRAINT "CHK_distance_repetitions" CHECK (
-            (distance IS NOT NULL AND repetitions IS NULL) OR 
-            (distance IS NULL AND repetitions IS NOT NULL)
+        ADD CONSTRAINT "CHK_distance_time_repetitions" CHECK (
+            (distance IS NOT NULL AND time IS NOT NULL AND repetitions IS NULL) OR 
+            (distance IS NULL AND time IS NULL AND repetitions IS NOT NULL)
         )
     `);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`ALTER TABLE "exercise" DROP CONSTRAINT "CHK_distance_repetitions"`);
+        await queryRunner.query(`ALTER TABLE "exercise" DROP CONSTRAINT "CHK_distance_time_repetitions"`);
         await queryRunner.dropTable('exercise');
     }
 }
