@@ -36,7 +36,6 @@ export class AuthService {
         // need to ensure i account for null data coming back with no error
         try {
           console.log('userData', userData);
-          this.userService.convertToBase64(userData.photo);
           this.userSubject.next(userData);
           this.user = userData;
           this.router.navigate(['/user']);

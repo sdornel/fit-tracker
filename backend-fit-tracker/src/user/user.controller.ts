@@ -1,9 +1,8 @@
-import { Body, Controller, FileTypeValidator, Get, NotFoundException, Param, ParseFilePipe, ParseIntPipe, Patch, Req, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, NotFoundException, Param, ParseIntPipe, Patch, Req, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { UserService } from './user.service';
 import { Users } from 'src/entities/user.entity';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
-import { extname } from 'path';
 import { v4 as uuidv4 } from 'uuid';
 import * as path from 'path';
 import { Request } from 'express';

@@ -29,18 +29,4 @@ export class UserService {
     }
     return this.http.patch<User>(`${this.apiUrl}/${id}`, formData);
   }
-
-  convertToBase64(data: ArrayBuffer, type: string = 'image/png'): Observable<string> {
-    return new Observable(subscriber => {
-        const blob = new Blob([data], { type });
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            const base64data = reader.result as string;
-            subscriber.next(base64data);
-            subscriber.complete();
-        };
-        reader.onerror = (error) => subscriber.error(error);
-        reader.readAsDataURL(blob);
-    });
-  }
 }
