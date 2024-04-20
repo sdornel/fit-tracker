@@ -56,9 +56,8 @@ export class AuthService {
       .pipe(
         map(user => {
           if (user) {
-            if (user?.photo && user?.photo.data) {
-              const photoPath = this.decodePhotoPath(new Uint8Array(user.photo.data));
-              user.photoUrl = `http://localhost:3000/uploads/${photoPath}`;
+            if (user?.photo) {
+              user.photoUrl = `http://localhost:3000/uploads/${user.photo}`;
             }
   
             this.user = user;
@@ -80,12 +79,6 @@ export class AuthService {
       );
   }
 
-
-  decodePhotoPath(buffer: ArrayBuffer): string {
-    const uint8Array = new Uint8Array(buffer);
-    const decoder = new TextDecoder('utf-8');
-    return decoder.decode(uint8Array);
-  }
 
   get isLoggedIn(): Observable<boolean> {
     return this.isAuthenticated$.asObservable();
