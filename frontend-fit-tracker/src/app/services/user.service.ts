@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject, Subscription, catchError, first, map, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from '../../environment';
 import { User } from '../models/user';
-import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -13,12 +12,9 @@ export class UserService {
   private apiUrl = `${environment.apiUrl}/users`;
 
   user: User | null = null;
-  // private userSubject = new BehaviorSubject<User | null>(null);
-  // user$ = this.userSubject.asObservable(); 
 
   constructor(
     private http: HttpClient,
-    private router: Router
   ) {}
 
   updateUser(id: number, updatedUser: User) {
@@ -32,22 +28,19 @@ export class UserService {
       formData.append('photo', updatedUser.photo);
     }
     return this.http.patch<User>(`${this.apiUrl}/${id}`, formData);
-    // return this.http.patch<User>(`${this.apiUrl}/${id}`, updatedUser);
   }
 
-  // convertArrayBufferToBase64(user: any): void {
-  //   if (user.photo && user.photo.data) {
-  //     const byteArray = new Uint8Array(user.photo.data);
-  //     const blob = new Blob([byteArray], { type: 'image/jpeg' });
-  
-  //     const reader = new FileReader();
-  //     reader.onload = () => {
-  //       user.photoBase64 = reader.result as string;
-  //     };
-  //     reader.onerror = (error) => {
-  //       console.error('Error converting file:', error);
-  //     };
-  //     reader.readAsDataURL(blob);
-  //   }
-  // }
+  convertToBase64(data: ArrayBuffer, type: string = 'image/png'): Observable<string> {
+    return new Observable(subscriber => {
+        const blob = new Blob([data], { type });
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            const base64data = reader.result as string;
+            subscriber.next(base64data);
+            subscriber.complete();
+        };
+        reader.onerror = (error) => subscriber.error(error);
+        reader.readAsDataURL(blob);
+    });
+  }
 }
