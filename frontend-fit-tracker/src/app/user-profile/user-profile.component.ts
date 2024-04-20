@@ -43,7 +43,6 @@ export class UserProfileComponent implements OnInit {
       console.log('The dialog was closed', result);
       if (result) {
         this.handleUpdate(this.user!.id, result);
-        // this.userService.convertArrayBufferToBase64(this.user);
         this.user = result;
       }
     });
