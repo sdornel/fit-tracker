@@ -19,6 +19,8 @@ export class UserProfileComponent implements OnInit {
   isModalOpen: boolean = false;
   profileForm!: FormGroup;
 
+  photoUrlPath: string = '';
+
   constructor(
     private authService: AuthService,
     private userService: UserService,
@@ -27,18 +29,9 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.authService.user;
-    // console.log('this.user before', this.user);
-    // if (this.user?.photo) {
-      // this.userService.convertArrayBufferToBase64(this.user);
-    // }
-    if (this.user?.photo.data) {
-      const decoder = new TextDecoder('utf-8');
-      const uint8Array = new Uint8Array(this.user.photo.data);
-      const photoPath = decoder.decode(uint8Array);
-      console.log('Decoded path:', photoPath);
-      this.user.photoUrl = `http://localhost:3000/${photoPath}`;
+    if (this.user?.photo) {
+      this.photoUrlPath = `http://localhost:3000/${this.user.photo}`;
     }
-    console.log('this.user', this.user);
   }
 
   openDialog() {
