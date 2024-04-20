@@ -27,10 +27,18 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.authService.user;
-    console.log('user', this.user);
-    if (this.user?.photo) {
+    // console.log('this.user before', this.user);
+    // if (this.user?.photo) {
       // this.userService.convertArrayBufferToBase64(this.user);
+    // }
+    if (this.user?.photo.data) {
+      const decoder = new TextDecoder('utf-8');
+      const uint8Array = new Uint8Array(this.user.photo.data);
+      const photoPath = decoder.decode(uint8Array);
+      console.log('Decoded path:', photoPath);
+      this.user.photoUrl = `http://localhost:3000/${photoPath}`;
     }
+    console.log('this.user', this.user);
   }
 
   openDialog() {
