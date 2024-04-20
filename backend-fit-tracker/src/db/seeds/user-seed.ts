@@ -1,13 +1,14 @@
 import dataSource from '../data-source';
 
-export async function seedUsers() {
-  const user = dataSource.getRepository('users').create({
+export async function seedUsers(queryRunner) {
+  const entityManager = queryRunner.manager;
+  const user = entityManager.getRepository('users').create({
     name: 'John Doe',
     email: 'john.doe@example.com',
     password: 'hash123',
   });
 
-  await dataSource.getRepository('users').save(user);
+  await entityManager.getRepository('users').save(user);
   
   console.log('Users seeded successfully');
 }

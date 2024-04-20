@@ -1,8 +1,9 @@
 import dataSource from '../data-source';
 
-export async function seedUserExercises() {
-    const userRepository = dataSource.getRepository('users');
-    const exerciseRepository = dataSource.getRepository('exercise');
+export async function seedUserExercises(queryRunner) {
+    const entityManager = queryRunner.manager;
+    const userRepository = entityManager.getRepository('users');
+    const exerciseRepository = entityManager.getRepository('exercise');
     
     // Retrieve specific exercises
     const runningExercise = await exerciseRepository.findOneBy({ exerciseType: 'Running' });

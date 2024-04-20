@@ -1,10 +1,12 @@
 import dataSource from '../data-source';
 
-export async function seedExercises() {
+export async function seedExercises(queryRunner) {
+  const entityManager = queryRunner.manager;
   const exercises = [
     {
       exerciseType: 'Running',
       distance: '5km',
+      time: '18:30',
       repetitions: null,
       resistance: null,
     },
@@ -16,7 +18,7 @@ export async function seedExercises() {
     },
   ];
 
-  const exerciseRepository = dataSource.getRepository('exercise');
+  const exerciseRepository = entityManager.getRepository('exercise');
 
   for (const exercise of exercises) {
     const exerciseEntry = exerciseRepository.create(exercise);
