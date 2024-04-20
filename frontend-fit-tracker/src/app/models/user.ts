@@ -4,7 +4,7 @@ export interface User {
     email: string;
     password: string;
     photo?: any;
-    // photoBase64: string;
+    photoUrl?: string;
     dateCreated: Date;
     dateUpdated: Date;
 }
