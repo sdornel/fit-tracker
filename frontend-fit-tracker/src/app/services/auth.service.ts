@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject, Subscription, catchError, first, map, of } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription, catchError, first, map, of, switchMap } from 'rxjs';
 import { environment } from '../../environment';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
@@ -36,7 +36,7 @@ export class AuthService {
         // need to ensure i account for null data coming back with no error
         try {
           console.log('userData', userData);
-          // this.userService.convertArrayBufferToBase64(userData);
+          this.userService.convertToBase64(userData.photo);
           this.userSubject.next(userData);
           this.user = userData;
           this.router.navigate(['/user']);
@@ -55,20 +55,20 @@ export class AuthService {
     return this.http.get<User>(`${this.apiUrl}/profile`, { withCredentials: true })
       .pipe(
         map(user => {
-          console.log('checkAuthentication func');
-          // debugger
           if (user) {
+            if (user?.photo && user?.photo.data) {
+              const photoPath = this.decodePhotoPath(new Uint8Array(user.photo.data));
+              user.photoUrl = `http://localhost:3000/uploads/${photoPath}`;
+            }
+  
             this.user = user;
-            // this.userService.convertArrayBufferToBase64(user);
             this.userSubject.next(user);
             this.isAuthenticated$.next(true);
             return true;
           } else {
-            this.user = null;
-            this.userSubject.next(null);
-            this.isAuthenticated$.next(false);
-            return false;
-
+              this.userSubject.next(null);
+              this.isAuthenticated$.next(false);
+              return false;
           }
         }),
         catchError(error => {
@@ -76,8 +76,15 @@ export class AuthService {
           this.userSubject.next(null);
           this.isAuthenticated$.next(false);
           return of(false); // remember that of is deprecated
-        })
+        }),
       );
+  }
+
+
+  decodePhotoPath(buffer: ArrayBuffer): string {
+    const uint8Array = new Uint8Array(buffer);
+    const decoder = new TextDecoder('utf-8');
+    return decoder.decode(uint8Array);
   }
 
   get isLoggedIn(): Observable<boolean> {
