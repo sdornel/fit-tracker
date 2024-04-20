@@ -29,7 +29,7 @@ export class Users1712617720344 implements MigrationInterface {
                 },
                 {
                     name: 'photo',
-                    type: 'bytea',
+                    type: 'varchar',
                     isNullable: true,
                 },
                 {
