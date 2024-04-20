@@ -27,18 +27,15 @@ export class UserService {
   // }
   async update(id: number, user: Partial<Users>, file: Express.Multer.File): Promise<Users> {
     if (file) {
-      // Process file here if necessary (e.g., resize, convert)
-      const filePath = this.saveFile(file); // Implement this method to save file to disk or cloud
-      user.photo = filePath; // Save file path or identifier in user entity
+      file.filename.replace('jpg', 'png');
+      file.filename.replace('jpeg', 'png');
+      const filePath = `uploads/${file.filename}`;
+      user.photo = filePath; // save the file path
     }
 
     return this.userRepository.updateUser(id, user);
   }
 
-  private saveFile(file: Express.Multer.File): string {
-    // Logic to save the file to disk or cloud storage
-    return 'backend-fit-tracker/uploads/';
-  }
 
   remove(id: number): Promise<void> {
     return this.userRepository.delete(id).then(() => {});

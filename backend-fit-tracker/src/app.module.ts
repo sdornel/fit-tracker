@@ -17,6 +17,7 @@ import { join } from 'path';
     AuthModule,
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'uploads'),  // Set the directory where files are stored
+      serveRoot: '/uploads/',
     }),
   ],
   controllers: [AppController],

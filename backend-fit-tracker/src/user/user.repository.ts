@@ -21,15 +21,10 @@ export class UserRepository extends Repository<Users> {
     }
     
     async updateUser(id: number, userData: Partial<Users>): Promise<Users> {
-        // console.log('userData', userData);
         const user = await this.findOneBy({ id });
         if (!user) {
           throw new Error(`User not found with id ${id}`);
         }
-
-        // if (file) {
-        //     user.photo = file.buffer; // convert uploaded file buffer directly for storage
-        // }
 
         // merge existing fields with the ones to be updated
         this.merge(user, userData);
