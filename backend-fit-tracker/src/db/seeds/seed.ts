@@ -4,6 +4,8 @@ import { seedUserExercises } from './user-exercise-seed';
 import { seedUsers } from './user-seed';
 
 async function main() {
+  await dataSource.initialize();
+
   const queryRunner = dataSource.createQueryRunner();
 
   await queryRunner.connect();
@@ -22,13 +24,13 @@ async function main() {
     console.log('UserExercises have been seeded!');
 
     await queryRunner.commitTransaction();
-    console.log('Transaction has been committed!');
-
+    console.log('Transaction has been committed!');    
   } catch (error) {
     await queryRunner.rollbackTransaction();
     console.error('Error during Data Seeding, transaction rolled back:', error);
   } finally {
     await queryRunner.release();
+    await dataSource.destroy();
     console.log('Data Source has been closed!');
   }
 }
