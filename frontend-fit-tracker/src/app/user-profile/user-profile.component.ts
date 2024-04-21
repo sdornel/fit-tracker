@@ -7,11 +7,12 @@ import { UserProfileEditComponent } from './user-edit/user-profile-edit.componen
 import { UserService } from '../services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
+import { GoalsComponent } from './goals/goals.component';
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [CommonModule, DatePipe, UserProfileEditComponent],
+  imports: [CommonModule, DatePipe, UserProfileEditComponent, GoalsComponent],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
 })
