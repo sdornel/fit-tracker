@@ -1,0 +1,43 @@
+.app-footer {
+    background-color: #2C3E50; /* Dark background for the footer */
+    color: #FFFFFF; /* White text color */
+    padding: 20px; /* Padding around the content */
+    font-size: 14px; /* Standard font size */
+}
+  
+.footer-sections {
+    display: flex; /* This turns the footer-sections into a flex container */
+    justify-content: space-between; /* This will space out the columns evenly */
+    flex-wrap: wrap; /* Allows the sections to wrap onto the next line on small screens */
+}
+  
+.footer-section {
+    flex: 1; /* Allows each section to grow and take up equal space */
+    padding: 10px; /* Padding inside each section */
+    min-width: 180px; /* Minimum width for each column */
+}
+  
+.footer-section h4 {
+    color: #FFFFFF; /* White color for headings for better readability */
+    margin-bottom: 10px; /* Space below headings */
+}
+  
+.footer-section a {
+    color: #9FE2BF; /* Light green color for links for a pop of color */
+    display: block; /* Each link on a new line */
+    margin-bottom: 5px; /* Space between links */
+}
+  
+.social-media a {
+    display: inline-block; /* Social media links displayed inline */
+    margin-right: 10px; /* Space to the right of each link */
+}
+  
+@media (max-width: 600px) {
+    .footer-sections {
+      flex-direction: column; /* Stack the columns vertically on small screens */
+    }
+    .footer-section {
+      margin-bottom: 20px; /* Adds more space between sections when stacked */
+    }
+}
