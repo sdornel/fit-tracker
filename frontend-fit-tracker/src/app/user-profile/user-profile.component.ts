@@ -6,6 +6,7 @@ import { FormGroup } from '@angular/forms';
 import { UserProfileEditComponent } from './user-edit/user-profile-edit.component';
 import { UserService } from '../services/user.service';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-profile',
@@ -15,11 +16,12 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrl: './user-profile.component.css'
 })
 export class UserProfileComponent implements OnInit {
+  private subscription: Subscription | null = null; // might need to make this an array later
   user: User | null = null;
   isModalOpen: boolean = false;
   profileForm!: FormGroup;
 
-  photoUrlPath: string = '';
+  photoUrlPath: string | ArrayBuffer = '';
 
   constructor(
     private authService: AuthService,
@@ -39,16 +41,35 @@ export class UserProfileComponent implements OnInit {
       data: this.user,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result: User) => {
       console.log('The dialog was closed', result);
       if (result) {
+        if (result.photo && result.photo.name) {
+          this.generateDataUrlForImmediateDisplay(result);
+        }
         this.handleUpdate(this.user!.id, result);
         this.user = result;
       }
     });
   }
 
+  generateDataUrlForImmediateDisplay(result: User) {
+    const reader = new FileReader();
+    reader.onload = (event: ProgressEvent<FileReader>) => {
+      if (event.target && event.target.result) {
+        this.photoUrlPath = event.target.result;
+      }
+    };
+
+    reader.readAsDataURL(result.photo);
+  }
+
   handleUpdate(userId: number, updatedUser: User) {
-    this.userService.updateUser(userId, updatedUser).subscribe();
+    // remember to consider .add in future if need be
+    this.subscription = this.userService.updateUser(userId, updatedUser).subscribe();
+  }
+
+  ngOnDestroy() {
+    this.subscription?.unsubscribe();
   }
 }
