@@ -6,5 +6,6 @@
         <p>Start date: {{ user.dateCreated | date: 'longDate' }}</p>
         <button mat-raised-button (click)="openDialog()" class="btn btn-primary">Edit Details</button>
     </div>
+    <app-goals></app-goals>
     <ng-template #loading><p>Loading...</p></ng-template>
 </div>
