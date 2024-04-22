@@ -7,4 +7,18 @@
 
 .user-profile-outline-div {
     padding: 40px;
+    display: flex;
+    width: 100%;
+}
+
+.user-details-div {
+    flex: 1;
+    background-color: #f8f9fa; /* light grey background for the sidebar */
+    padding: 20px;
+}
+
+.goals-div {
+    flex: 3;
+    background-color: #ffffff; /* white background for goals */
+    padding: 20px;
 }
