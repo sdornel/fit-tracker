@@ -1,0 +1,9 @@
+.short-term-goal-card {
+    border: 2px solid #FFCC99;
+    box-shadow: none;
+}
+
+.long-term-goal-card {
+    border: 2px solid #99CC99;
+    box-shadow: none;
+}
