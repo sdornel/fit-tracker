@@ -44,7 +44,7 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  openDialog() {
+  openEditModalDialog() {
     const dialogRef = this.dialog.open(UserProfileEditComponent, {
       data: this.user,
     });
@@ -59,6 +59,10 @@ export class UserProfileComponent implements OnInit {
         this.user = result;
       }
     });
+  }
+
+  openGoalModalDialog() {
+    
   }
 
   generateDataUrlForImmediateDisplay(result: User) {
