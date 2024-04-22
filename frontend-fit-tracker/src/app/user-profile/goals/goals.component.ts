@@ -1,11 +1,12 @@
 import { CommonModule, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-goals',
   standalone: true,
-  imports: [MatCardModule, CommonModule, NgFor],
+  imports: [MatCardModule, CommonModule, NgFor, MatIconModule],
   templateUrl: './goals.component.html',
   styleUrl: './goals.component.css'
 })
@@ -17,33 +18,39 @@ export class GoalsComponent {
   longTermGoals: Array<any> = [ // temp data objects
     {
       id: 1,
-      text: 'run a marathon',
+      title: 'run a marathon',
+      notes: 'lorem ipsum...',
       deadline: 'some future date',
     }, {
       id: 2,
-      text: 'squat 500lbs',
+      title: 'squat 500lbs',
+      notes: 'lorem ipsum...',
       deadline: 'some future date',
     }
   ];
   shortTermGoals: Array<any> = [ // temp data objects
     {
       id: 3,
-      text: 'do 5 sit to stands',
+      title: 'do 5 sit to stands',
+      notes: 'lorem ipsum...',
       deadline: 'some future date',
     },
     {
       id: 4,
-      text: 'do 10 squats',
+      title: 'do 10 squats',
+      notes: 'lorem ipsum...',
       deadline: 'some future date',
     },
     {
       id: 5,
-      text: 'do 10 pushups',
+      title: 'do 10 pushups',
+      notes: 'lorem ipsum...',
       deadline: 'some future date',
     },
     {
       id: 6,
-      text: 'walk 2 miles without pain',
+      title: 'walk 2 miles without pain',
+      notes: 'lorem ipsum...',
       deadline: 'some future date',
     }
   ];
