@@ -8,11 +8,18 @@ import { UserService } from '../services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { GoalsComponent } from './goals/goals.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [CommonModule, DatePipe, UserProfileEditComponent, GoalsComponent],
+  imports: [
+    CommonModule,
+    DatePipe,
+    UserProfileEditComponent,
+    GoalsComponent,
+    MatButtonModule
+  ],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
 })
