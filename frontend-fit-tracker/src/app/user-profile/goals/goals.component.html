@@ -3,3 +3,14 @@
 and view more details. Include functionality to edit goals directly from
 this dashboard.
 Add New Goal: Button or link prominently displayed to encourage new goal setting. -->
+<div *ngFor="let goal of longTermGoals">
+    <mat-card tabindex="0">
+        <mat-card-content>Long card</mat-card-content>
+    </mat-card>
+</div>
+
+<div *ngFor="let goal of shortTermGoals">
+    <mat-card tabindex="0">
+        <mat-card-content>Short card</mat-card-content>
+    </mat-card>
+</div>
