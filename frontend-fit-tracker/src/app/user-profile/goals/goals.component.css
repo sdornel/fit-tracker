@@ -1,9 +1,42 @@
+.goals-title {
+   text-align: left; 
+   margin-left: 10px;
+}
+
+.goal-cards-container {
+    display: flex;
+    flex-wrap: wrap;  /* Ensures items can wrap onto the next line */
+    justify-content: flex-start;  /* Aligns items to the start of the container */
+    padding: 10px;  /* Reduced padding for more space */
+    gap: 20px;  /* Provides consistent spacing between items */
+}
+
+.short-term-goal-card, .long-term-goal-card {
+    height: 140px;
+    width: 140px;
+    border: 2px solid;
+    box-shadow: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .short-term-goal-card {
-    border: 2px solid #FFCC99;
+    border-color: #FFCC99;
     box-shadow: none;
 }
 
 .long-term-goal-card {
-    border: 2px solid #99CC99;
+    border-color: #99CC99;
     box-shadow: none;
+}
+
+@media (max-width: 600px) {
+    .goals-container {
+      justify-content: center; /* Center cards when they stack vertically */
+    }
+    .goal-card {
+      width: 100%; /* Full width cards for better mobile visibility */
+      margin-bottom: 10px; /* Reduce space between stacked cards on small screens */
+    }
 }

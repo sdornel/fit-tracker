@@ -2,16 +2,23 @@
 and view more details. Include functionality to edit goals directly from
 this dashboard.
 Add New Goal: Button or link prominently displayed to encourage new goal setting. -->
-<div *ngFor="let goal of shortTermGoals">
-    <mat-card tabindex="0" class="short-term-goal-card">
-        <mat-card-content>{{ goal.text }}</mat-card-content>
-        <mat-card-content>{{ goal.deadline }}</mat-card-content>
-    </mat-card>
-</div>
+<div class="goals-container">
+    <h1 class="goals-title">My Goals</h1>
+    <div class="goal-cards-container">
+        <div *ngFor="let goal of shortTermGoals">
+            <mat-card tabindex="0" class="short-term-goal-card goal-card">
+                <mat-card-content>{{ goal.text }}</mat-card-content>
+                <mat-card-content>{{ goal.deadline }}</mat-card-content>
+            </mat-card>
+        </div>
+    </div>
 
-<div *ngFor="let goal of longTermGoals">
-    <mat-card tabindex="0" class="long-term-goal-card">
-        <mat-card-content>{{ goal.text }}</mat-card-content>
-        <mat-card-content>{{ goal.deadline }}</mat-card-content>
-    </mat-card>
+    <div class="goal-cards-container">
+        <div *ngFor="let goal of longTermGoals">
+            <mat-card tabindex="0" class="long-term-goal-card goal-card">
+                <mat-card-content>{{ goal.text }}</mat-card-content>
+                <mat-card-content>{{ goal.deadline }}</mat-card-content>
+            </mat-card>
+        </div>
+    </div>
 </div>
