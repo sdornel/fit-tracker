@@ -54,4 +54,12 @@ export class GoalsComponent {
       deadline: 'some future date',
     }
   ];
+
+  goalCompleted() {
+    console.log('Goal Completed');
+  }
+
+  openEditGoalModal() {
+    console.log('Editing Goal');
+  }
 }
