@@ -6,8 +6,9 @@
             <h1>{{ user.name }}</h1>
             <h3>Email: {{ user.email }}</h3>
             <h3>Start date: {{ user.dateCreated | date: 'longDate' }}</h3>
-            <h3>Goals accomplished: [placeholder for later]</h3>
+            <h3>Goals Accomplished: [placeholder for later]</h3>
             <button mat-raised-button (click)="openGoalModalDialog()" class="btn btn-primary">View Previous Goals</button>
+            <button mat-raised-button (click)="openDeleteModalDialog()" class="btn btn-primary">Delete Account</button>
             <button mat-raised-button (click)="openEditModalDialog()" class="btn btn-primary">bring to top rightEdit Details</button>
         </div>
 
