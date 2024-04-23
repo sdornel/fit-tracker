@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Goal } from '../../../models/goal';
 
 @Component({
   selector: 'app-edit-goal',
@@ -9,4 +11,9 @@ import { Component } from '@angular/core';
 })
 export class EditGoalComponent {
 
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public goal: Goal
+  ) {
+
+  }
 }
