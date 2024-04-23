@@ -12,6 +12,9 @@
 }
 
 .goal-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensures that the buttons align to the bottom */
     position: relative;
     height: 150px;
     width: 150px;
@@ -25,6 +28,18 @@
 
 .long-term-goal-card {
     border-color: #99CC99;
+}
+
+.goals-buttons-div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.done-button, .edit-button {
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-bottom: 5px;
 }
 
 @media (max-width: 600px) {

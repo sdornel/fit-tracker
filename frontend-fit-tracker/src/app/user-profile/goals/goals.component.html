@@ -10,8 +10,10 @@ Add New Goal: Button or link prominently displayed to encourage new goal setting
                 <mat-card-content>{{ goal.title }}</mat-card-content>
                 <mat-card-content>{{ goal.notes }}</mat-card-content>
                 <mat-card-content>{{ goal.deadline }}</mat-card-content>
-                <mat-icon aria-label="Check" style="cursor: pointer;" (click)="goalCompleted()">done</mat-icon>
-                <mat-icon aria-label="Edit" style="cursor: pointer;" (click)="openEditGoalModal()">edit</mat-icon>
+                <div class="goals-buttons-div">
+                    <mat-icon class="done-button" aria-label="Check" style="cursor: pointer;" (click)="goalCompleted()">done</mat-icon>
+                    <mat-icon class="edit-button" aria-label="Edit" style="cursor: pointer;" (click)="openEditGoalModal()">edit</mat-icon>
+                </div>
             </mat-card>
         </div>
     </div>
@@ -22,8 +24,10 @@ Add New Goal: Button or link prominently displayed to encourage new goal setting
                 <mat-card-content>{{ goal.title }}</mat-card-content>
                 <mat-card-content>{{ goal.notes }}</mat-card-content>
                 <mat-card-content>{{ goal.deadline }}</mat-card-content>
-                <mat-icon aria-label="Check" style="cursor: pointer;" (click)="goalCompleted()">done</mat-icon>
-                <mat-icon aria-label="Edit" style="cursor: pointer;" (click)="openEditGoalModal()">edit</mat-icon>
+                <div class="goals-buttons-div">
+                    <mat-icon class="done-button" aria-label="Check" style="cursor: pointer;" (click)="goalCompleted()">done</mat-icon>
+                    <mat-icon class="edit-button" aria-label="Edit" style="cursor: pointer;" (click)="openEditGoalModal()">edit</mat-icon>
+                </div>
             </mat-card>
         </div>
     </div>
