@@ -50,7 +50,6 @@ export class UserProfileComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result: User) => {
-      console.log('The dialog was closed', result);
       if (result) {
         if (result.photo && result.photo.name) {
           this.generateDataUrlForImmediateDisplay(result);
