@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { CommonModule, DatePipe } from '@angular/common';
 import { AuthService } from '../services/auth.service';
@@ -23,7 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent implements OnInit, OnDestroy {
   private subscription: Subscription | null = null; // might need to make this an array later
   user: User | null = null;
   isModalOpen: boolean = false;
