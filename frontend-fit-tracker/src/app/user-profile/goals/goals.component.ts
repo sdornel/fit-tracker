@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { EditGoalComponent } from './edit-goal/edit-goal.component';
 
 @Component({
   selector: 'app-goals',
@@ -74,6 +75,14 @@ export class GoalsComponent {
 
   openEditGoalModal(event: any) {
     console.log('Editing Goal', event.target.id);
-    // const dialogRef = this.dialog.open()
+    const id = event.target.id;
+    const dialogRef = this.dialog.open(EditGoalComponent, {
+      data: id <= 4 ? this.longTermGoals.filter(g => g.id === id) : this.shortTermGoals.filter(g => g.id === id), // with a maximum of 8 goals per user i do not need to handle this server-side
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      console.log('The dialog was closed', result);
+      
+    })
   }
 }
