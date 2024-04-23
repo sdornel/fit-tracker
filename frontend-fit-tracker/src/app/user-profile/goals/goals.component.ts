@@ -1,10 +1,12 @@
 import { CommonModule, NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { EditGoalComponent } from './edit-goal/edit-goal.component';
 import { Goal } from '../../models/goal';
+import { Subscription } from 'rxjs';
+import { GoalService } from '../../services/goal.service';
 
 @Component({
   selector: 'app-goals',
@@ -13,7 +15,8 @@ import { Goal } from '../../models/goal';
   templateUrl: './goals.component.html',
   styleUrl: './goals.component.css'
 })
-export class GoalsComponent {
+export class GoalsComponent implements OnDestroy {
+  private subscription: Subscription | null = null; // might need to make this an array later
   longTermGoals: Array<Goal> = [ // temp data objects
     {
       id: 1,
@@ -66,6 +69,7 @@ export class GoalsComponent {
 
   constructor(
     private dialog: MatDialog,
+    private goalService: GoalService
   ) {
 
   }
@@ -83,7 +87,15 @@ export class GoalsComponent {
 
     dialogRef.afterClosed().subscribe((result: Goal) => {
       console.log('The dialog was closed', result);
+      this.handleUpdate(result);
+    });
+  }
 
-    })
+  handleUpdate(goal: Goal) {
+    this.subscription = this.goalService.updateGoal(goal).subscribe();
+  }
+
+  ngOnDestroy() {
+    this.subscription?.unsubscribe();
   }
 }
