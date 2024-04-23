@@ -1,0 +1,16 @@
+.mat-dialog-content {
+    padding: 20px; /* Adjust padding as needed */
+}
+
+/* Alternatively, if .mat-dialog-content doesn't work or isn't used, target your component directly */
+.goal-detail-modal {
+    padding: 20px; /* Adjust padding as needed */
+}
+
+/* Adjusts the dialog actions for consistent spacing */
+.mat-dialog-actions {
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end; /* Aligns buttons to the right */
+    border-top: 1px solid #ccc; /* Optional: adds a line above the actions for visual separation */
+}
