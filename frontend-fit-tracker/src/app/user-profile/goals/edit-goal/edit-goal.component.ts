@@ -3,11 +3,19 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 import { Goal } from '../../../models/goal';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-edit-goal',
   standalone: true,
-  imports: [ReactiveFormsModule, MatDialogModule, MatFormFieldModule],
+  imports: [
+    ReactiveFormsModule,
+    MatDialogModule,
+    // MatFormFieldModule,
+    // MatInputModule,
+    // MatListModule,
+  ],
   templateUrl: './edit-goal.component.html',
   styleUrl: './edit-goal.component.css'
 })
