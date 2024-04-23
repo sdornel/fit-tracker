@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { EditGoalComponent } from './edit-goal/edit-goal.component';
+import { Goal } from '../../models/goal';
 
 @Component({
   selector: 'app-goals',
@@ -13,7 +14,7 @@ import { EditGoalComponent } from './edit-goal/edit-goal.component';
   styleUrl: './goals.component.css'
 })
 export class GoalsComponent {
-  longTermGoals: Array<any> = [ // temp data objects
+  longTermGoals: Array<Goal> = [ // temp data objects
     {
       id: 1,
       title: 'run a marathon',
@@ -36,7 +37,7 @@ export class GoalsComponent {
       deadline: 'some future date',
     }
   ];
-  shortTermGoals: Array<any> = [ // temp data objects
+  shortTermGoals: Array<Goal> = [ // temp data objects
     {
       id: 5,
       title: 'do 5 sit to stands',
@@ -80,9 +81,9 @@ export class GoalsComponent {
       data: id <= 4 ? this.longTermGoals.filter(g => g.id === id) : this.shortTermGoals.filter(g => g.id === id), // with a maximum of 8 goals per user i do not need to handle this server-side
     });
 
-    dialogRef.afterClosed().subscribe((result: any) => {
+    dialogRef.afterClosed().subscribe((result: Goal) => {
       console.log('The dialog was closed', result);
-      
+
     })
   }
 }
