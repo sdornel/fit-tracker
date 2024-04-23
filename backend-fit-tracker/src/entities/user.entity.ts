@@ -1,5 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, UpdateDateColumn, CreateDateColumn } from 'typeorm';
 import { Exercise } from './exercise.entity';
+import { Goal } from './goal.entity';
 
 @Entity()
 export class Users {
@@ -45,4 +46,18 @@ export class Users {
     }
   })
   exercises: Array<Exercise>;
+
+  @ManyToMany(() => Goal, goal => goal.users)
+  @JoinTable({
+    name: 'usergoals',
+    joinColumn: {
+        name: 'userId',
+        referencedColumnName: 'id'
+    },
+    inverseJoinColumn: {
+        name: 'goalId',
+        referencedColumnName: 'id'
+    }
+  })
+  goals: Array<Goal>;
 }
