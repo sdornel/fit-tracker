@@ -5,6 +5,7 @@
             <mat-card tabindex="0" class="short-term-goal-card goal-card">
                 <div [id]="goal.id" (click)="openGoalViewModal($event)" style="cursor: pointer;">
                     <mat-card-content class="truncate-text">{{ goal.title }}</mat-card-content>
+                    <br/>
                     <mat-card-content class="truncate-text">{{ goal.notes }}</mat-card-content>
                     <mat-card-content>{{ goal.deadline }}</mat-card-content>
                 </div>
@@ -21,6 +22,7 @@
             <mat-card tabindex="0" class="long-term-goal-card goal-card">
                 <div [id]="goal.id" (click)="openGoalViewModal($event)" style="cursor: pointer;">
                     <mat-card-content class="truncate-text">{{ goal.title }}</mat-card-content>
+                    <br/>
                     <mat-card-content class="truncate-text">{{ goal.notes }}</mat-card-content>
                     <mat-card-content>{{ goal.deadline }}</mat-card-content>
                 </div>
