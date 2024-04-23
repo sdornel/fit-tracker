@@ -75,10 +75,10 @@ export class GoalsComponent {
   }
 
   openEditGoalModal(event: any) {
-    console.log('Editing Goal', event.target.id);
-    const id = event.target.id;
+    const id: number = Number(event.target.id);
+    const goal = (id <= 4 ? this.longTermGoals.filter(g => g.id === id) : this.shortTermGoals.filter(g => g.id === id))[0]; // with a maximum of 8 goals per user i do not need to handle this server-side
     const dialogRef = this.dialog.open(EditGoalComponent, {
-      data: id <= 4 ? this.longTermGoals.filter(g => g.id === id) : this.shortTermGoals.filter(g => g.id === id), // with a maximum of 8 goals per user i do not need to handle this server-side
+      data: goal,
     });
 
     dialogRef.afterClosed().subscribe((result: Goal) => {
