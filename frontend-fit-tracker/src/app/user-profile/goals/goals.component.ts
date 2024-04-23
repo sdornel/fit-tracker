@@ -1,6 +1,7 @@
 import { CommonModule, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -11,10 +12,6 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './goals.component.css'
 })
 export class GoalsComponent {
-  // max of 3 long term goals. maximum of 6 goals total
-  // Visual cards or a list that users can click to expand
-  // and view more details. Include functionality to edit 
-  // goals directly from this dashboard.
   longTermGoals: Array<any> = [ // temp data objects
     {
       id: 1,
@@ -26,40 +23,57 @@ export class GoalsComponent {
       title: 'squat 500lbs',
       notes: 'lorem ipsum...',
       deadline: 'some future date',
+    }, {
+      id: 3,
+      title: 'live independently',
+      notes: 'lorem ipsum...',
+      deadline: 'some future date',
+    }, {
+      id: 4,
+      title: 'carry my grandchildren',
+      notes: 'lorem ipsum...',
+      deadline: 'some future date',
     }
   ];
   shortTermGoals: Array<any> = [ // temp data objects
     {
-      id: 3,
+      id: 5,
       title: 'do 5 sit to stands',
       notes: 'lorem ipsum...',
       deadline: 'some future date',
     },
     {
-      id: 4,
+      id: 6,
       title: 'do 10 squats',
       notes: 'lorem ipsum...',
       deadline: 'some future date',
     },
     {
-      id: 5,
+      id: 7,
       title: 'do 10 pushups',
       notes: 'lorem ipsum...',
       deadline: 'some future date',
     },
     {
-      id: 6,
+      id: 8,
       title: 'walk 2 miles without pain',
       notes: 'lorem ipsum...',
       deadline: 'some future date',
     }
   ];
 
-  goalCompleted() {
-    console.log('Goal Completed');
+  constructor(
+    private dialog: MatDialog,
+  ) {
+
   }
 
-  openEditGoalModal() {
-    console.log('Editing Goal');
+  goalCompleted(event: any) {
+    console.log('Goal Completed', event.target.id);
+  }
+
+  openEditGoalModal(event: any) {
+    console.log('Editing Goal', event.target.id);
+    // const dialogRef = this.dialog.open()
   }
 }
