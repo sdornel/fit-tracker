@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Goal } from '../../../models/goal';
 
 @Component({
   selector: 'app-goal-detail-modal',
@@ -9,5 +10,5 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrl: './goal-detail-modal.component.css'
 })
 export class GoalDetailModalComponent {
-  constructor(private dialog: MatDialog) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public goal: Goal) {console.log('goal', goal)}
 }

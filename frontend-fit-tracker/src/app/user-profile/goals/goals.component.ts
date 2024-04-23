@@ -94,7 +94,7 @@ export class GoalsComponent implements OnDestroy {
   }
 
   openGoalViewModal(event: any) {
-    const id: number = Number(event.target.id);
+    const id: number = Number(event.target.parentElement.id);
     const goal = (id <= 4 ? this.longTermGoals.filter(g => g.id === id) : this.shortTermGoals.filter(g => g.id === id))[0]; // with a maximum of 8 goals per user i do not need to handle this server-side
     this.dialog.open(GoalDetailModalComponent, {
       data: goal,
