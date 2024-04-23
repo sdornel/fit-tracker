@@ -7,7 +7,7 @@ import { EditGoalComponent } from './edit-goal/edit-goal.component';
 import { Goal } from '../../models/goal';
 import { Subscription } from 'rxjs';
 import { GoalService } from '../../services/goal.service';
-import { GoalModalComponent } from './goal-modal/goal-modal.component';
+import { GoalDetailModalComponent } from './goal-detail-modal/goal-detail-modal.component';
 
 @Component({
   selector: 'app-goals',
@@ -96,7 +96,7 @@ export class GoalsComponent implements OnDestroy {
   openGoalViewModal(event: any) {
     const id: number = Number(event.target.id);
     const goal = (id <= 4 ? this.longTermGoals.filter(g => g.id === id) : this.shortTermGoals.filter(g => g.id === id))[0]; // with a maximum of 8 goals per user i do not need to handle this server-side
-    this.dialog.open(GoalModalComponent, {
+    this.dialog.open(GoalDetailModalComponent, {
       data: goal,
     });
 
