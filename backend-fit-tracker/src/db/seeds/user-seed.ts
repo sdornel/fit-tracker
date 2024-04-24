@@ -1,5 +1,3 @@
-import dataSource from '../data-source';
-
 export async function seedUsers(queryRunner) {
   const entityManager = queryRunner.manager;
   const user = entityManager.getRepository('users').create({
@@ -9,6 +7,4 @@ export async function seedUsers(queryRunner) {
   });
 
   await entityManager.getRepository('users').save(user);
-  
-  console.log('Users seeded successfully');
 }

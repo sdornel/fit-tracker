@@ -50,5 +50,4 @@ export class UserGoal1713880524725 implements MigrationInterface {
 
         await queryRunner.dropTable('usergoals');
     }
-
 }

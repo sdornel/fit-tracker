@@ -12,6 +12,9 @@ export class Goal {
   @Column()
   notes: string;
 
+  @Column()
+  type: string;
+
   @Column({ type: 'timestamp' })
   deadline: Date;
 

@@ -1,5 +1,3 @@
-import dataSource from '../data-source';
-
 export async function seedExercises(queryRunner) {
   const entityManager = queryRunner.manager;
   const exercises = [
@@ -25,6 +23,4 @@ export async function seedExercises(queryRunner) {
     const exerciseEntry = exerciseRepository.create(exercise);
     await exerciseRepository.save(exerciseEntry);
   }
-
-  console.log('Exercises seeded successfully');
 }
