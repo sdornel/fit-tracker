@@ -8,12 +8,14 @@ import { ExerciseModule } from './exercise/exercise.module';
 import { AuthModule } from './auth/auth.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { GoalModule } from './goal/goal.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(dataSourceOptions),
     UserModule,
     ExerciseModule,
+    GoalModule,
     AuthModule,
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'uploads'),  // Set the directory where files are stored
