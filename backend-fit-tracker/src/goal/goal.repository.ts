@@ -20,7 +20,7 @@ export class GoalRepository extends Repository<Goal> {
         return this.save(goal);
     }
     
-    async updateGxercise(id: number, goalData: Partial<Goal>): Promise<Goal> {
+    async updateGoal(id: number, goalData: Partial<Goal>): Promise<Goal> {
         const goal = await this.findOneBy({ id });
         if (!goal) {
           throw new Error(`Goal not found with id ${id}`);
@@ -30,10 +30,10 @@ export class GoalRepository extends Repository<Goal> {
         return this.save(goal);
     }
     
-    async removeExercise(id: number): Promise<void> {
+    async removeGoal(id: number): Promise<void> {
         const result = await this.delete(id);
         if (result.affected === 0) {
-          throw new Error(`Exercise with ID "${id}" not found`);
+          throw new Error(`Goal with ID "${id}" not found`);
         }
     }
 }
