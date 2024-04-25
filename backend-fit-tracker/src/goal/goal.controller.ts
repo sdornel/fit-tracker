@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from 
 import { GoalService } from './goal.service';
 import { Goal } from 'src/entities/goal.entity';
 
-@Controller('goal')
+@Controller('goals')
 export class GoalController {
     constructor(private readonly goalService: GoalService) {}
 
