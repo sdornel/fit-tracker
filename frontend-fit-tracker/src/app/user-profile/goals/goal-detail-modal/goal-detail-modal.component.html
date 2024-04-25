@@ -1,0 +1,8 @@
+<mat-dialog-content class="goal-detail-modal">
+    <h1>{{ goal.title }}</h1>
+    <p><strong>Deadline:</strong> {{ goal.deadline | date }}</p>
+    <p><strong>Notes:</strong> {{ goal.notes }}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="closeDialog()">Close</button>
+</mat-dialog-actions>

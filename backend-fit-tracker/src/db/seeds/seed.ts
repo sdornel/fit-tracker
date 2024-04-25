@@ -1,6 +1,8 @@
 import dataSource from '../data-source';
 import { seedExercises } from './exercise-seed';
+import { seedGoals } from './goal-seed';
 import { seedUserExercises } from './user-exercise-seed';
+import { seedUserGoals } from './user-goal-seed';
 import { seedUsers } from './user-seed';
 
 async function main() {
@@ -22,6 +24,12 @@ async function main() {
 
     await seedUserExercises(queryRunner);
     console.log('UserExercises have been seeded!');
+
+    await seedGoals(queryRunner);
+    console.log('Goals have been seeded!');
+
+    await seedUserGoals(queryRunner);
+    console.log('UserGoals have been seeded!');
 
     await queryRunner.commitTransaction();
     console.log('Transaction has been committed!');    

@@ -1,5 +1,3 @@
-import dataSource from '../data-source';
-
 export async function seedUserExercises(queryRunner) {
     const entityManager = queryRunner.manager;
     const userRepository = entityManager.getRepository('users');
@@ -15,7 +13,6 @@ export async function seedUserExercises(queryRunner) {
         user.exercises = [runningExercise, pushUpsExercise];
         // Save the updated user to automatically update the join table
         await userRepository.save(user);
-        console.log('userexercises table has been seeded!');
     } else {
         console.log('Required users or exercises not found, cannot seed relationships.');
     }

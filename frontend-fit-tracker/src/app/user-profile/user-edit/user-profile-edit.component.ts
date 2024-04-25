@@ -72,7 +72,7 @@ export class UserProfileEditComponent implements OnInit, OnChanges {
       ...this.user,
       ...this.userForm.value
     }
-    console.log('updatedUser', updatedUser);
+
     if (this.dialogRef) {
       this.dialogRef.close(updatedUser);
     }

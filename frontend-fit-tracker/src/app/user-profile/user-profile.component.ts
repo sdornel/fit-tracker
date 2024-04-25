@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { CommonModule, DatePipe } from '@angular/common';
 import { AuthService } from '../services/auth.service';
@@ -8,15 +8,22 @@ import { UserService } from '../services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { GoalsComponent } from './goals/goals.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [CommonModule, DatePipe, UserProfileEditComponent, GoalsComponent],
+  imports: [
+    CommonModule,
+    DatePipe,
+    UserProfileEditComponent,
+    GoalsComponent,
+    MatButtonModule
+  ],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent implements OnInit, OnDestroy {
   private subscription: Subscription | null = null; // might need to make this an array later
   user: User | null = null;
   isModalOpen: boolean = false;
@@ -37,13 +44,12 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  openDialog() {
+  openEditModalDialog() {
     const dialogRef = this.dialog.open(UserProfileEditComponent, {
       data: this.user,
     });
 
     dialogRef.afterClosed().subscribe((result: User) => {
-      console.log('The dialog was closed', result);
       if (result) {
         if (result.photo && result.photo.name) {
           this.generateDataUrlForImmediateDisplay(result);
@@ -52,6 +58,14 @@ export class UserProfileComponent implements OnInit {
         this.user = result;
       }
     });
+  }
+
+  openGoalModalDialog() {
+
+  }
+
+  openDeleteModalDialog() {
+    
   }
 
   generateDataUrlForImmediateDisplay(result: User) {
