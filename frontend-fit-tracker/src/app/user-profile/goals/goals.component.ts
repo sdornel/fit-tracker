@@ -24,55 +24,6 @@ import { GoalDetailModalComponent } from './goal-detail-modal/goal-detail-modal.
 })
 export class GoalsComponent implements OnInit, OnDestroy {
   private subscription: Subscription | null = null; // might need to make this an array later
-  // longTermGoals: Array<Goal> = [ // temp data objects
-  //   {
-  //     id: 1,
-  //     title: 'run a marathon',
-  //     notes: 'lorem ipsum...',
-  //     deadline: 'some future date',
-  //   }, {
-  //     id: 2,
-  //     title: 'squat 500lbs',
-  //     notes: 'lorem ipsum...',
-  //     deadline: 'some future date',
-  //   }, {
-  //     id: 3,
-  //     title: 'live independently',
-  //     notes: 'lorem ipsum...',
-  //     deadline: 'some future date',
-  //   }, {
-  //     id: 4,
-  //     title: 'carry my grandchildren',
-  //     notes: 'lorem ipsum...',
-  //     deadline: 'some future date',
-  //   }
-  // ];
-  // shortTermGoals: Array<Goal> = [ // temp data objects
-  //   {
-  //     id: 5,
-  //     title: 'do 5 sit to stands',
-  //     notes: 'lorem ipsum...',
-  //     deadline: 'some future date',
-  //   },
-  //   {
-  //     id: 6,
-  //     title: 'do 10 squats',
-  //     notes: 'lorem ipsum...lorem ipsum...lorem ipsum...lorem ipsum...lorem ipsum...lorem ipsum...lorem ipsum...lorem ipsum...lorem ipsum...lorem ipsum...lorem ipsum...lorem ipsum...lorem ipsum...lorem ipsum...lorem ipsum...',
-  //     deadline: 'some future date',
-  //   },
-  //   {
-  //     id: 7,
-  //     title: 'do 10 pushups',
-  //     notes: 'lorem ipsum...',
-  //     deadline: 'some future date',
-  //   },
-  //   {
-  //     id: 8,
-  //     title: 'walk 2 miles without pain',
-  //     notes: 'lorem ipsum...',
-  //     deadline: 'some future date',
-  //   }
-  // ];
 
   longTermGoals!: Array<Goal>;
   shortTermGoals!: Array<Goal>;
