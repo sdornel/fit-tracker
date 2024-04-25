@@ -7,7 +7,7 @@ export class GoalController {
     constructor(private readonly goalService: GoalService) {}
 
     @Get()
-    findAll() {
+    findAll(): Promise<{ long: Array<Goal>; short: Array<Goal>; }> {
       return this.goalService.findAll();
     }
   

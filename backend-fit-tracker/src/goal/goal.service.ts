@@ -9,8 +9,22 @@ export class GoalService {
         private goalRepository: GoalRepository,
       ) {}
     
-      findAll(): Promise<Array<Goal>> {
-        return this.goalRepository.find();
+      async findAll(): Promise<{ long: Array<Goal>; short: Array<Goal>; }> {
+        // return this.goalRepository.find();
+        const goals = await this.goalRepository.find();
+        const longTermGoals: Array<Goal> = [];
+        const shortTermGoals: Array<Goal> = [];
+        goals.forEach(goal => {
+          if (goal.type === 'long') {
+            // goal.deadline = goal.deadline.toLocaleDateString();
+            longTermGoals.push(goal);
+          } else {
+            // goal.deadline = goal.deadline.toLocaleDateString();
+            shortTermGoals.push(goal);
+          }
+        });
+
+        return { long: longTermGoals, short: shortTermGoals };
       }
     
       findOne(id: number): Promise<Goal> {
