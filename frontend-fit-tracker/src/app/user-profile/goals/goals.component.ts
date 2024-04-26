@@ -8,6 +8,7 @@ import { Goal } from '../../models/goal';
 import { Subscription } from 'rxjs';
 import { GoalService } from '../../services/goal.service';
 import { GoalDetailModalComponent } from './goal-detail-modal/goal-detail-modal.component';
+import { CompleteGoalComponent } from './complete-goal/complete-goal.component';
 
 @Component({
   selector: 'app-goals',
@@ -46,6 +47,13 @@ export class GoalsComponent implements OnInit, OnDestroy {
 
   goalCompleted(event: any) {
     console.log('Goal Completed', event.target.id);
+    const dialogRef = this.dialog.open(CompleteGoalComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+
+      }
+    })
   }
 
   openEditGoalModal(event: any) {
