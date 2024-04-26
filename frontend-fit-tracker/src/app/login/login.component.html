@@ -1,7 +1,7 @@
 <div class="login-container">
-  <span>email: john.doe&#64;example.com password: hash123</span>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <h2>Login</h2>
+      <span>email: john.doe&#64;example.com password: hash123</span>
       <div class="form-group">
         <label for="email">Email</label>
         <input type="email" formControlName="email" class="form-control" id="email" placeholder="Enter email">
