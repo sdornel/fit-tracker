@@ -26,6 +26,12 @@ export class GoalController {
     create(@Body() goal: Goal) {
       return this.goalService.create(goal);
     }
+
+    @Patch('complete-:id')
+    completeGoal(@Param('id', ParseIntPipe) id: number): Promise<boolean> {
+      console.log('id', id);
+      return this.goalService.completeGoal(id);
+    }
   
     @Patch(':id')
     update(@Param('id', ParseIntPipe) id: number, @Body() goal: Partial<Goal>) {

@@ -16,6 +16,8 @@ export class GoalService {
         await queryRunner.connect();
 
         const number: Array<{ count: number; }> = await queryRunner.query(`SELECT COUNT(completed) FROM goal where goal.completed = true`)
+        
+        queryRunner.release();
         return Number(number[0].count);
       }
     
@@ -43,6 +45,28 @@ export class GoalService {
     
       create(goal: Goal): Promise<Goal> {
         return this.goalRepository.save(goal);
+      }
+
+      async completeGoal(id: number): Promise<boolean> {
+        const queryRunner = this.dataSource.createQueryRunner();
+        await queryRunner.connect();
+        try {
+  
+          await queryRunner.query(`
+            UPDATE goal
+            SET completed = true
+            WHERE goal.id = $1;
+          `, [id]);
+
+          return true;
+        } catch (error) {
+
+          console.error('Error setting goal completion status to true:', error);
+          new Error('Error setting goal completion status to true');
+        } finally {
+          // You should always release the query runner which has been manually instantiated
+          await queryRunner.release();
+        }
       }
     
       async update(id: number, goal: Partial<Goal>): Promise<Goal> {
