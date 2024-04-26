@@ -3,4 +3,5 @@ export interface Goal {
     title: string,
     notes: string,
     deadline: string,
+    type: string,
 }
