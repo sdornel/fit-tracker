@@ -11,7 +11,7 @@ export class GoalService {
     
       async findAll(): Promise<{ long: Array<Goal>; short: Array<Goal>; }> {
         // return this.goalRepository.find();
-        const goals = await this.goalRepository.find();
+        const goals = await this.goalRepository.findAllGoals();
         const longTermGoals: Array<Goal> = [];
         const shortTermGoals: Array<Goal> = [];
         goals.forEach(goal => {
