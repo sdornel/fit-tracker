@@ -1,10 +1,16 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
 import { GoalService } from './goal.service';
 import { Goal } from 'src/entities/goal.entity';
+import { QueryRunner } from 'typeorm';
 
 @Controller('goals')
 export class GoalController {
     constructor(private readonly goalService: GoalService) {}
+
+    @Get('number-of-accomplished-goals')
+    getNumberOfAccomplishedGoals(): Promise<number> {
+      return this.goalService.getNumberOfAccomplishedGoals();
+    }
 
     @Get()
     findAll(): Promise<{ long: Array<Goal>; short: Array<Goal>; }> {

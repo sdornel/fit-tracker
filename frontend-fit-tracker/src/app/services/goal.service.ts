@@ -26,6 +26,6 @@ export class GoalService {
   }
 
   getNumberAccomplishedGoals() {
-    
+    return this.http.get<number>(`${this.apiUrl}/number-of-accomplished-goals`);
   }
 }

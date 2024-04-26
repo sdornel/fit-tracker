@@ -1,13 +1,23 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { GoalRepository } from './goal.repository';
 import { Goal } from 'src/entities/goal.entity';
+import { DataSource } from 'typeorm';
 
 @Injectable()
 export class GoalService {
     constructor(
-        @Inject(GoalRepository)
-        private goalRepository: GoalRepository,
-      ) {}
+      @Inject(GoalRepository)
+      private goalRepository: GoalRepository,
+      private dataSource: DataSource,
+    ) {}
+
+      async getNumberOfAccomplishedGoals(): Promise<number> {
+        const queryRunner = this.dataSource.createQueryRunner();
+        await queryRunner.connect();
+
+        const number: Array<{ count: number; }> = await queryRunner.query(`SELECT COUNT(completed) FROM goal where goal.completed = true`)
+        return Number(number[0].count);
+      }
     
       async findAll(): Promise<{ long: Array<Goal>; short: Array<Goal>; }> {
         // return this.goalRepository.find();

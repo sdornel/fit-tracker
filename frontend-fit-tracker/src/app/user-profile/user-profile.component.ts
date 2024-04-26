@@ -76,7 +76,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   }
 
   getNumberAccomplishedGoals() {
-    this.goalService.getNumberAccomplishedGoals();
+    this.goalService.getNumberAccomplishedGoals().subscribe((count: number) => this.numberOfAccomplishedGoals = count);
   }
 
   generateDataUrlForImmediateDisplay(result: User) {
