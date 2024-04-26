@@ -35,7 +35,6 @@ export class AuthService {
       ).subscribe((userData) => {
         // need to ensure i account for null data coming back with no error
         try {
-          console.log('userData', userData);
           this.userSubject.next(userData);
           this.user = userData;
           this.router.navigate(['/user']);
