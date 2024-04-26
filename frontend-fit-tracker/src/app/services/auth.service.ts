@@ -33,7 +33,6 @@ export class AuthService {
       .pipe(
         first()
       ).subscribe((userData) => {
-        // need to ensure i account for null data coming back with no error
         try {
           this.userSubject.next(userData);
           this.user = userData;
