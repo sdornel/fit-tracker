@@ -18,6 +18,9 @@ export class Goal {
   @Column({ type: 'timestamp' })
   deadline: Date;
 
+  @Column()
+  completed: boolean;
+
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   dateCreated: Date;
 

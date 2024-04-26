@@ -26,6 +26,10 @@ export class Goal1713880515307 implements MigrationInterface {
                     type: 'varchar',
                 },
                 {
+                    name: 'completed',
+                    type: 'boolean',
+                },
+                {
                     name: 'deadline',
                     type: 'varchar',
                 },
@@ -43,30 +47,31 @@ export class Goal1713880515307 implements MigrationInterface {
             expression: `"type" IN ('long', 'short')`
         }));
 
-        // limit the number of rows in the 'goal' table
-        const limitNumberOfRows = `
-        CREATE OR REPLACE FUNCTION check_row_count()
+        // limit the number of 'not completed' goals to 8
+        const limitNumberNotCompletedRows = `
+        CREATE OR REPLACE FUNCTION enforce_max_non_completed_goals()
         RETURNS TRIGGER AS $$
         BEGIN
-            IF (SELECT count(*) FROM goal) >= 8 THEN
-                RAISE EXCEPTION 'Cannot insert more than 8 goals';
+            IF (SELECT COUNT(*) FROM goal WHERE completed = false) >= 8 THEN
+                RAISE EXCEPTION 'Cannot have more than 8 non-completed goals';
             END IF;
             RETURN NEW;
         END;
         $$ LANGUAGE plpgsql;
 
-        CREATE TRIGGER trigger_check_row_count
-        BEFORE INSERT ON goal
+        CREATE TRIGGER trigger_check_non_completed_goal_count
+        BEFORE INSERT OR UPDATE ON goal
         FOR EACH ROW
-        EXECUTE FUNCTION check_row_count();
+        WHEN (NEW.completed = false)
+        EXECUTE FUNCTION enforce_max_non_completed_goals();
         `;
 
-        await queryRunner.query(limitNumberOfRows);
+        await queryRunner.query(limitNumberNotCompletedRows);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query('DROP TRIGGER IF EXISTS trigger_check_row_count ON goal');
-        await queryRunner.query('DROP FUNCTION IF EXISTS check_row_count');
+        await queryRunner.query('DROP TRIGGER IF EXISTS trigger_check_non_completed_goal_count ON goal');
+        await queryRunner.query('DROP FUNCTION IF EXISTS enforce_max_non_completed_goals');
         await queryRunner.dropCheckConstraint('goal', 'check_type');
         await queryRunner.dropTable('goal');
     }
