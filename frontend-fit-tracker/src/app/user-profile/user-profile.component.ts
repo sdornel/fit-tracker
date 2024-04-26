@@ -62,7 +62,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   }
 
   openPreviousGoalModalDialog() {
-
+    // ask user for date ranges
   }
 
   openDeleteModalDialog() {
