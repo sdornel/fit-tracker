@@ -18,6 +18,8 @@ export class AuthService {
     await queryRunner.connect();
 
     const user = (await queryRunner.query('SELECT * FROM "users" WHERE "email" = $1', [email]))[0];
+
+    queryRunner.release();
     if (user && user.password === pass) {
       const { password, ...result } = user;
       return result;
