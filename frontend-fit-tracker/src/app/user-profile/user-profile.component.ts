@@ -55,7 +55,6 @@ export class UserProfileComponent implements OnInit, OnDestroy {
           this.generateDataUrlForImmediateDisplay(result);
         }
         this.handleUpdate(this.user!.id, result);
-        this.user = result;
       }
     });
   }
@@ -81,7 +80,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   handleUpdate(userId: number, updatedUser: User) {
     // remember to consider .add in future if need be
-    this.subscription = this.userService.updateUser(userId, updatedUser).subscribe();
+    this.subscription = this.userService.updateUser(userId, updatedUser).subscribe(user => this.user = user);
   }
 
   ngOnDestroy() {
