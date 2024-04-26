@@ -45,20 +45,23 @@ export class GoalsComponent implements OnInit, OnDestroy {
     });
   }
 
-  goalCompleted(event: any) {
-    console.log('Goal Completed', event.target.id);
+  goalCompleted(goal: Goal) {
     const dialogRef = this.dialog.open(CompleteGoalComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-
+        debugger
+        this.goalService.completeGoal(goal.id).subscribe(completed => {
+          console.log('completed', completed);
+          if (completed) {
+            // goal.type === 'long' ? 
+          }
+        });
       }
     })
   }
 
-  openEditGoalModal(event: any) {
-    const id: number = Number(event.target.id);
-    const goal = (id <= 4 ? this.longTermGoals.filter(g => g.id === id) : this.shortTermGoals.filter(g => g.id === id))[0]; // with a maximum of 8 goals per user i do not need to handle this server-side
+  openEditGoalModal(goal: Goal) {
     const dialogRef = this.dialog.open(EditGoalComponent, {
       data: goal,
     });
@@ -71,15 +74,10 @@ export class GoalsComponent implements OnInit, OnDestroy {
     });
   }
 
-  openGoalViewModal(event: any) {
-    const id: number = Number(event.target.parentElement.id) > 0 ? Number(event.target.parentElement.id) : Number(event.target.id);
-    
-    // there are only ever 4 short term goals and 4 long term goals
-    const goal = (id <= 4 ? this.longTermGoals.filter(g => g.id === id) : this.shortTermGoals.filter(g => g.id === id))[0]; // with a maximum of 8 goals per user i do not need to handle this server-side
+  openGoalViewModal(goal: Goal) {
     this.dialog.open(GoalDetailModalComponent, {
       data: goal,
     });
-
   }
 
   handleUpdate(goal: Goal) {
