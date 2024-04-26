@@ -50,11 +50,11 @@ export class GoalsComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        debugger
         this.goalService.completeGoal(goal.id).subscribe(completed => {
-          console.log('completed', completed);
           if (completed) {
-            // goal.type === 'long' ? 
+            goal.type === 'long' ?
+            this.longTermGoals = this.longTermGoals.filter(goalIndex => goalIndex.id !== goal.id) :
+            this.shortTermGoals = this.shortTermGoals.filter(goalIndex => goalIndex.id !== goal.id);
           }
         });
       }
@@ -68,7 +68,6 @@ export class GoalsComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe((result: Goal) => {
       if (result) {
-
         this.handleUpdate(result);
       }
     });

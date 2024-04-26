@@ -28,9 +28,8 @@ export class GoalController {
     }
 
     @Patch('complete-:id')
-    completeGoal(@Param('id', ParseIntPipe) id: number): Promise<boolean> {
-      console.log('id', id);
-      return this.goalService.completeGoal(id);
+    completeGoal(@Param('id', ParseIntPipe) goalId: number): Promise<boolean> {
+      return this.goalService.completeGoal(goalId);
     }
   
     @Patch(':id')

@@ -21,11 +21,15 @@ export class GoalService {
     return this.http.get<{ long: Array<Goal>; short: Array<Goal>; }>(`${this.apiUrl}`);
   }
 
-  updateGoal(goal: Goal) {
+  updateGoal(goal: Goal): Observable<Goal> {
     return this.http.patch<Goal>(`${this.apiUrl}/${goal.id}`, goal);
   }
 
-  getNumberAccomplishedGoals() {
+  getNumberAccomplishedGoals(): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}/number-of-accomplished-goals`);
+  }
+
+  completeGoal(id: number): Observable<number> {
+    return this.http.patch<number>(`${this.apiUrl}/complete-${id}`, { id: id });
   }
 }
