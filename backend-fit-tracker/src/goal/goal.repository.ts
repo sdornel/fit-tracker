@@ -9,7 +9,7 @@ export class GoalRepository extends Repository<Goal> {
     }
 
     findAllGoals(): Promise<Goal[]> {
-        return this.find();
+        return this.findBy({ completed: false });
     }
     
     findGoalById(id: number): Promise<Goal> {
