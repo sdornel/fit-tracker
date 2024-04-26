@@ -39,7 +39,6 @@ export class GoalsComponent implements OnInit, OnDestroy {
 
   fetchGoals() {
     this.goalService.fetchGoals().subscribe(goals => {
-      console.log('goals', goals);
       this.longTermGoals = goals.long;
       this.shortTermGoals = goals.short;
     });
