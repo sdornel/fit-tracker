@@ -66,7 +66,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   }
 
   openDeleteModalDialog() {
-    
+    // just make "are you sure y/n" modal
+    console.log('deleting account');
   }
 
   generateDataUrlForImmediateDisplay(result: User) {
