@@ -55,6 +55,9 @@ export class GoalsComponent implements OnInit, OnDestroy {
             goal.type === 'long' ?
             this.longTermGoals = this.longTermGoals.filter(goalIndex => goalIndex.id !== goal.id) :
             this.shortTermGoals = this.shortTermGoals.filter(goalIndex => goalIndex.id !== goal.id);
+            
+            const currentCount = this.goalService.goalsCompleted.value;
+            this.goalService.goalsCompleted.next(currentCount + 1);
           }
         });
       }

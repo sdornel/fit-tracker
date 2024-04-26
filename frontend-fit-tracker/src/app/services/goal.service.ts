@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../environment';
 import { Goal } from '../models/goal';
 
@@ -12,6 +12,7 @@ export class GoalService {
   private apiUrl = `${environment.apiUrl}/goals`;
 
   goal: Goal | null = null;
+  goalsCompleted: BehaviorSubject<number> = new BehaviorSubject(0);
 
   constructor(
     private http: HttpClient,
