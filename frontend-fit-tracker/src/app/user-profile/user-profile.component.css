@@ -13,12 +13,22 @@
 
 .user-details-div {
     flex: 1;
-    background-color: #f8f9fa; /* light grey background for the sidebar */
+    background-color: #f8f9fa;
     padding: 20px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Aligns items vertically in center */
+    margin-bottom: 20px; /* Optional spacing */
+}
+
+.edit-icon {
+    margin-bottom: 100px;
 }
 
 .goals-div {
     flex: 3;
-    background-color: #ffffff; /* white background for goals */
     padding: 20px;
 }

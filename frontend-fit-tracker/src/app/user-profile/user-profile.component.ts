@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { GoalsComponent } from './goals/goals.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-user-profile',
@@ -18,7 +19,8 @@ import { MatButtonModule } from '@angular/material/button';
     DatePipe,
     UserProfileEditComponent,
     GoalsComponent,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
@@ -59,7 +61,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     });
   }
 
-  openGoalModalDialog() {
+  openPreviousGoalModalDialog() {
 
   }
 

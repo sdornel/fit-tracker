@@ -1,16 +1,19 @@
 <div>
     <div class="user-profile-outline-div" *ngIf="user; else loading">
         <div class="user-details-div">
-            <img [src]="photoUrlPath ? photoUrlPath : 'assets/user-image-placeholder.jpg'" alt="User Photo" class="user-image">
+            <div class="header-container">
+                <img [src]="photoUrlPath ? photoUrlPath : 'assets/user-image-placeholder.jpg'" alt="User Photo" class="user-image">
+                    <mat-icon class="edit-icon" style="cursor: pointer;" (click)="openEditModalDialog()">edit</mat-icon>
+            </div>
             <h1>{{ user.name }}</h1>
             <h3>Email: {{ user.email }}</h3>
             <h3>Start date: {{ user.dateCreated | date: 'longDate' }}</h3>
             <h3>Goals Accomplished: [placeholder for later]</h3>
             <br/>
-            <button mat-raised-button (click)="openGoalModalDialog()" class="btn btn-primary">View Previous Goals</button>
+            <button mat-raised-button (click)="openPreviousGoalModalDialog()" class="btn btn-primary">View Previous Goals</button>
             <br/><br/>
             <button mat-raised-button (click)="openDeleteModalDialog()" class="btn btn-primary">Delete Account</button>
-            <button mat-raised-button (click)="openEditModalDialog()" class="btn btn-primary">bring to top rightEdit Details</button>
+            <!-- <button mat-raised-button (click)="openEditModalDialog()" class="btn btn-primary edit-button">bring to top rightEdit Details</button> -->
         </div>
 
         <div class="goals-div">  
