@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 import { GoalsComponent } from './goals/goals.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { GoalService } from '../services/goal.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -33,9 +34,12 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   photoUrlPath: string | ArrayBuffer = '';
 
+  numberOfAccomplishedGoals: number = 0;
+
   constructor(
     private authService: AuthService,
     private userService: UserService,
+    private goalService: GoalService,
     private dialog: MatDialog,
   ) {}
 
@@ -44,6 +48,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     if (this.user?.photo) {
       this.photoUrlPath = `http://localhost:3000/${this.user.photo}`;
     }
+    this.getNumberAccomplishedGoals();
   }
 
   openEditModalDialog() {
@@ -68,6 +73,10 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   openDeleteModalDialog() {
     // just make "are you sure y/n" modal
     console.log('deleting account');
+  }
+
+  getNumberAccomplishedGoals() {
+    this.goalService.getNumberAccomplishedGoals();
   }
 
   generateDataUrlForImmediateDisplay(result: User) {

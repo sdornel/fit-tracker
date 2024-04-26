@@ -24,4 +24,8 @@ export class GoalService {
   updateGoal(goal: Goal) {
     return this.http.patch<Goal>(`${this.apiUrl}/${goal.id}`, goal);
   }
+
+  getNumberAccomplishedGoals() {
+    
+  }
 }

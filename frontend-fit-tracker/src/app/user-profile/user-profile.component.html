@@ -8,7 +8,7 @@
             <h1>{{ user.name }}</h1>
             <h3>Email: {{ user.email }}</h3>
             <h3>Start date: {{ user.dateCreated | date: 'longDate' }}</h3>
-            <h3>Goals Accomplished: [placeholder for later]</h3>
+            <h3>Goals Accomplished: {{ numberOfAccomplishedGoals }}</h3>
             <br/>
             <button mat-raised-button (click)="openPreviousGoalModalDialog()" class="btn btn-primary">View Previous Goals</button>
             <br/><br/>
