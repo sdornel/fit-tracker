@@ -76,7 +76,13 @@ export class GoalsComponent implements OnInit, OnDestroy {
   }
 
   handleUpdate(goal: Goal) {
-    this.subscription = this.goalService.updateGoal(goal).subscribe();
+    this.subscription = this.goalService.updateGoal(goal).subscribe((updatedGoal: Goal) => {
+      const goals = updatedGoal.type === 'long' ? this.longTermGoals : this.shortTermGoals;
+      const index = goals.findIndex(g => g.id === updatedGoal.id);
+      if (index !== -1) {
+        goals[index] = updatedGoal;
+      }
+    });
   }
 
   ngOnDestroy() {
