@@ -26,8 +26,8 @@ export class GoalService {
     return this.http.patch<Goal>(`${this.apiUrl}/${goal.id}`, goal);
   }
 
-  getNumberAccomplishedGoals(): Observable<number> {
-    return this.http.get<number>(`${this.apiUrl}/number-of-accomplished-goals`);
+  getNumberAccomplishedGoals(id: number): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/number-of-accomplished-goals`, { params: { id: id } });;
   }
 
   completeGoal(id: number): Observable<number> {

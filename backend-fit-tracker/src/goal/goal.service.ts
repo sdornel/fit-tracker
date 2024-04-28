@@ -11,11 +11,13 @@ export class GoalService {
       private dataSource: DataSource,
     ) {}
 
-      async getNumberOfAccomplishedGoals(): Promise<number> {
+      async getNumberOfAccomplishedGoals(id: number): Promise<number> {
         const queryRunner = this.dataSource.createQueryRunner();
         await queryRunner.connect();
 
-        const number: Array<{ count: number; }> = await queryRunner.query(`SELECT COUNT(completed) FROM goal where goal.completed = true`)
+        const number: Array<{ count: number; }> = await queryRunner.query(`
+          SELECT COUNT(completed) FROM goal g LEFT JOIN usergoals u ON u."goalId" = g."id" WHERE u."userId" = $1
+        `, [id]);
         
         queryRunner.release();
         return Number(number[0].count);
