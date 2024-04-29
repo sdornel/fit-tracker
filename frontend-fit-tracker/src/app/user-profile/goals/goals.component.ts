@@ -27,7 +27,7 @@ import { CreateGoalComponent } from './create-goal/create-goal.component';
   styleUrl: './goals.component.css'
 })
 export class GoalsComponent implements OnInit, OnDestroy {
-  private subscription: Subscription | null = null; // might need to make this an array later
+  private subscriptions: Subscription | null = null;
 
   longTermGoals: Array<Goal> = [];
   shortTermGoals: Array<Goal> = [];
@@ -80,13 +80,14 @@ export class GoalsComponent implements OnInit, OnDestroy {
   }
 
   handleUpdate(goal: Goal) {
-    this.subscription = this.goalService.updateGoal(goal).subscribe((updatedGoal: Goal) => {
+    this.subscriptions?.add(this.goalService.updateGoal(goal).subscribe((updatedGoal: Goal) => {
       const goals = updatedGoal.type === 'long' ? this.longTermGoals : this.shortTermGoals;
       const index = goals.findIndex(g => g.id === updatedGoal.id);
       if (index !== -1) {
         goals[index] = updatedGoal;
       }
-    });
+    })
+    );
   }
 
   openCreateGoalModal() {
@@ -100,7 +101,9 @@ export class GoalsComponent implements OnInit, OnDestroy {
   }
 
   handleCreate(goal: Goal) {
+    this.subscriptions?.add(
 
+    );
   }
 
   openGoalViewModal(goal: Goal) {
@@ -110,6 +113,6 @@ export class GoalsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription?.unsubscribe();
+    this.subscriptions?.unsubscribe();
   }
 }
