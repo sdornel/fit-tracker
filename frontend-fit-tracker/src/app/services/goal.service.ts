@@ -26,6 +26,10 @@ export class GoalService {
     return this.http.patch<Goal>(`${this.apiUrl}/${goal.id}`, goal);
   }
 
+  createGoal(goal: Goal): Observable<Goal> {
+    return this.http.post<Goal>(`${this.apiUrl}`, goal);
+  }
+
   getNumberAccomplishedGoals(id: number): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}/number-of-accomplished-goals`, { params: { id: id } });;
   }
