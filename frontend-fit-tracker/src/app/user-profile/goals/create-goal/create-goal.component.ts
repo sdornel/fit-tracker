@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-create-goal',
@@ -16,6 +16,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 export class CreateGoalComponent {
   goalForm!: FormGroup;
 
+  constructor(private dialogRef: MatDialogRef<CreateGoalComponent>,) {}
+
   ngOnInit(): void {
     this.buildForm();
   }
@@ -28,5 +30,9 @@ export class CreateGoalComponent {
     });
   }
 
-  onSubmit() {}
+  onSubmit() {
+    if (this.dialogRef) {
+      this.dialogRef.close(this.goalForm.value);
+    }
+  }
 }

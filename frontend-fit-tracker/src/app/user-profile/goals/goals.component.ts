@@ -79,22 +79,6 @@ export class GoalsComponent implements OnInit, OnDestroy {
     });
   }
 
-  openCreateGoalModal() {
-    const dialogRef = this.dialog.open(CreateGoalComponent);
-
-    // dialogRef.afterClosed().subscribe((result: Goal) => {
-    //   if (result) {
-    //     this.handleUpdate(result);
-    //   }
-    // });
-  }
-
-  openGoalViewModal(goal: Goal) {
-    this.dialog.open(GoalDetailModalComponent, {
-      data: goal,
-    });
-  }
-
   handleUpdate(goal: Goal) {
     this.subscription = this.goalService.updateGoal(goal).subscribe((updatedGoal: Goal) => {
       const goals = updatedGoal.type === 'long' ? this.longTermGoals : this.shortTermGoals;
@@ -102,6 +86,26 @@ export class GoalsComponent implements OnInit, OnDestroy {
       if (index !== -1) {
         goals[index] = updatedGoal;
       }
+    });
+  }
+
+  openCreateGoalModal() {
+    const dialogRef = this.dialog.open(CreateGoalComponent);
+
+    dialogRef.afterClosed().subscribe((result: Goal) => {
+      if (result) {
+        this.handleCreate(result);
+      }
+    });
+  }
+
+  handleCreate(goal: Goal) {
+
+  }
+
+  openGoalViewModal(goal: Goal) {
+    this.dialog.open(GoalDetailModalComponent, {
+      data: goal,
     });
   }
 
