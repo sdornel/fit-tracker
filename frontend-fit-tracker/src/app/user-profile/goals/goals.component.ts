@@ -27,7 +27,7 @@ import { CreateGoalComponent } from './create-goal/create-goal.component';
   styleUrl: './goals.component.css'
 })
 export class GoalsComponent implements OnInit, OnDestroy {
-  private subscriptions: Subscription | null = null;
+  private subscriptions: Subscription = new Subscription();
 
   longTermGoals: Array<Goal> = [];
   shortTermGoals: Array<Goal> = [];
@@ -80,13 +80,16 @@ export class GoalsComponent implements OnInit, OnDestroy {
   }
 
   handleUpdate(goal: Goal) {
-    this.subscriptions?.add(this.goalService.updateGoal(goal).subscribe((updatedGoal: Goal) => {
-      const goals = updatedGoal.type === 'long' ? this.longTermGoals : this.shortTermGoals;
-      const index = goals.findIndex(g => g.id === updatedGoal.id);
-      if (index !== -1) {
-        goals[index] = updatedGoal;
-      }
-    })
+    this.subscriptions?.add(
+      this.goalService.updateGoal(goal).subscribe(
+        (updatedGoal: Goal) => {
+          const goals = updatedGoal.type === 'long' ? this.longTermGoals : this.shortTermGoals;
+          const index = goals.findIndex(g => g.id === updatedGoal.id);
+          if (index !== -1) {
+            goals[index] = updatedGoal;
+          }
+        }
+      )
     );
   }
 
@@ -102,7 +105,13 @@ export class GoalsComponent implements OnInit, OnDestroy {
 
   handleCreate(goal: Goal) {
     this.subscriptions?.add(
-
+      this.goalService.createGoal(goal).subscribe(goal => {
+        const goals = goal.type === 'long' ? this.longTermGoals : this.shortTermGoals;
+        const index = goals.findIndex(g => g.id === goal.id);
+        if (index !== -1) {
+          goals[index] = goal;
+        };
+      })
     );
   }
 
