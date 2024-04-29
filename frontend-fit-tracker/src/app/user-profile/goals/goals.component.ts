@@ -9,11 +9,13 @@ import { Subscription } from 'rxjs';
 import { GoalService } from '../../services/goal.service';
 import { GoalDetailModalComponent } from './goal-detail-modal/goal-detail-modal.component';
 import { CompleteGoalComponent } from './complete-goal/complete-goal.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-goals',
   standalone: true,
-  imports: [MatCardModule, CommonModule, NgFor, MatIconModule],
+  imports: [MatCardModule, CommonModule, NgFor, MatIconModule, MatButtonModule, MatTooltipModule],
   providers: [
     {
       provide: DATE_PIPE_DEFAULT_OPTIONS,

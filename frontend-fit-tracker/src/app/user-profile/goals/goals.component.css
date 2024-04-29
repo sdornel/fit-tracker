@@ -49,6 +49,30 @@
     max-width: 250px;
 }
 
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.create-goal-button {
+    margin-right: 10px;
+    background-color: #b3b3b3;
+    color: #ffffff;
+    border-radius: 50%;
+}
+
+.create-goal-button:hover {
+    margin-right: 10px;
+    background-color: #979797;
+    color: #ffffff;
+    border-radius: 50%;
+}
+
+.goals-title {
+    margin-right: 70%;
+}
+
 @media (max-width: 600px) {
     .goals-container {
         justify-content: center;
