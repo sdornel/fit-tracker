@@ -28,8 +28,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 export class GoalsComponent implements OnInit, OnDestroy {
   private subscription: Subscription | null = null; // might need to make this an array later
 
-  longTermGoals!: Array<Goal>;
-  shortTermGoals!: Array<Goal>;
+  longTermGoals: Array<Goal> = [];
+  shortTermGoals: Array<Goal> = [];
 
   constructor(
     private dialog: MatDialog,
