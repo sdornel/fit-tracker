@@ -1,7 +1,7 @@
 <div class="goals-container">
     <div class="header-container">
         <h1 class="goals-title">My Goals</h1>
-        <button [disabled]="shortTermGoals.length + longTermGoals.length === 8" mat-icon-button matTooltip="Create a new goal" class="create-goal-button" aria-label="Add">
+        <button (click)="openCreateGoalModal()" [disabled]="shortTermGoals.length + longTermGoals.length === 8" mat-icon-button matTooltip="Create a new goal" class="create-goal-button" aria-label="Add">
             <mat-icon>add</mat-icon>
           </button>
     </div>

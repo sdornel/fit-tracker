@@ -11,6 +11,7 @@ import { GoalDetailModalComponent } from './goal-detail-modal/goal-detail-modal.
 import { CompleteGoalComponent } from './complete-goal/complete-goal.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { CreateGoalComponent } from './create-goal/create-goal.component';
 
 @Component({
   selector: 'app-goals',
@@ -76,6 +77,16 @@ export class GoalsComponent implements OnInit, OnDestroy {
         this.handleUpdate(result);
       }
     });
+  }
+
+  openCreateGoalModal() {
+    const dialogRef = this.dialog.open(CreateGoalComponent);
+
+    // dialogRef.afterClosed().subscribe((result: Goal) => {
+    //   if (result) {
+    //     this.handleUpdate(result);
+    //   }
+    // });
   }
 
   openGoalViewModal(goal: Goal) {
