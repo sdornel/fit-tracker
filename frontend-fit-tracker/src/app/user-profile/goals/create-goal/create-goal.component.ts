@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
+import { MatRadioModule } from '@angular/material/radio';
 
 @Component({
   selector: 'app-create-goal',
@@ -17,6 +18,7 @@ import {provideNativeDateAdapter} from '@angular/material/core';
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
+    MatRadioModule,
     NgIf,
   ],
   providers: [provideNativeDateAdapter()],
@@ -37,6 +39,7 @@ export class CreateGoalComponent {
     this.goalForm = new FormGroup({
       title: new FormControl(null, [Validators.required]),
       notes: new FormControl(null, [Validators.required]),
+      type: new FormControl(null, [Validators.required]),
       deadline: new FormControl(null, [Validators.required]),
     });
   }
