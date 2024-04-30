@@ -24,8 +24,7 @@ export class GoalController {
   
     @Post()
     create(@Body() goal: Goal) {
-      console.log('hi');
-      // return this.goalService.create(goal);
+      return this.goalService.create(goal);
     }
 
     @Patch('complete-:id')
