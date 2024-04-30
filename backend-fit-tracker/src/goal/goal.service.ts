@@ -16,7 +16,7 @@ export class GoalService {
         await queryRunner.connect();
 
         const number: Array<{ count: number; }> = await queryRunner.query(`
-          SELECT COUNT(completed) FROM goal g LEFT JOIN usergoals u ON u."goalId" = g."id" WHERE u."userId" = $1
+          SELECT COUNT(completed) FROM goal g LEFT JOIN usergoals u ON u."goalId" = g."id" WHERE u."userId" = $1 and completed = true;
         `, [id]);
         
         queryRunner.release();
