@@ -47,7 +47,11 @@ export class CreateGoalComponent {
 
   onSubmit() {
     if (this.dialogRef) {
-      this.dialogRef.close(this.goalForm.value);
+      const createdGoal = {
+        ...this.goalForm.value,
+        completed: false,
+      }
+      this.dialogRef.close(createdGoal);
     }
   }
 }
