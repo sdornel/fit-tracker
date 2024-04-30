@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -8,6 +9,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
   imports: [
     ReactiveFormsModule,
     MatDialogModule,
+    NgIf,
   ],
   templateUrl: './create-goal.component.html',
   styleUrl: './create-goal.component.css'

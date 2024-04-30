@@ -66,6 +66,16 @@ input[type="email"], input[type="password"], input[type="text"] {
     background-color: #e63946;
 }
 
+button:disabled {
+    background-color: #ccc;
+    color: #888;
+    cursor: not-allowed;
+}
+
+.btn-primary:hover:disabled {
+    background-color: #ccc;
+}
+
 @media (max-width: 400px) {
     form {
         width: 85%;
