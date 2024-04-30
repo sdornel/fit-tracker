@@ -36,6 +36,6 @@
   </mat-form-field>
 
   <mat-dialog-actions>
-    <button mat-button [disabled]="!goalForm.touched || !this.goalForm.valid" class="btn btn-primary">Save Changes</button>
+    <button mat-button [disabled]="goalForm.pristine || !this.goalForm.valid" class="btn btn-primary">Save Changes</button>
   </mat-dialog-actions>
 </form>
