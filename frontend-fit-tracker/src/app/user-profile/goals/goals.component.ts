@@ -106,11 +106,7 @@ export class GoalsComponent implements OnInit, OnDestroy {
   handleCreate(goal: Goal) {
     this.subscriptions?.add(
       this.goalService.createGoal(goal).subscribe(goal => {
-        const goals = goal.type === 'long' ? this.longTermGoals : this.shortTermGoals;
-        const index = goals.findIndex(g => g.id === goal.id);
-        if (index !== -1) {
-          goals[index] = goal;
-        };
+        goal.type === 'long' ? this.longTermGoals.push(goal) : this.shortTermGoals.push(goal);
       })
     );
   }
