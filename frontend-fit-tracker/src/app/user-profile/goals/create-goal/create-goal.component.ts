@@ -28,6 +28,7 @@ import { MatRadioModule } from '@angular/material/radio';
 // I should consider consolidating this with the edit form
 export class CreateGoalComponent {
   goalForm!: FormGroup;
+  minDate: Date = new Date();
 
   constructor(private dialogRef: MatDialogRef<CreateGoalComponent>,) {}
 
