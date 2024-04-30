@@ -1,15 +1,26 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { Goal } from '../../../models/goal';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NgIf } from '@angular/common';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-edit-goal',
   standalone: true,
   imports: [
     ReactiveFormsModule,
+    FormsModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    NgIf,
   ],
+  providers: [provideNativeDateAdapter()],
   templateUrl: './edit-goal.component.html',
   styleUrl: './edit-goal.component.css'
 })
