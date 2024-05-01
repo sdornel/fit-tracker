@@ -47,23 +47,21 @@ export class Goal1713880515307 implements MigrationInterface {
             expression: `"type" IN ('long', 'short')`
         }));
 
-        // limit the number of 'not completed' goals to 8
         const limitNumberNotCompletedRows = `
-        CREATE OR REPLACE FUNCTION enforce_max_non_completed_goals()
-        RETURNS TRIGGER AS $$
-        BEGIN
-            IF (SELECT COUNT(*) FROM goal WHERE completed = false) >= 8 THEN
-                RAISE EXCEPTION 'Cannot have more than 8 non-completed goals';
-            END IF;
-            RETURN NEW;
-        END;
-        $$ LANGUAGE plpgsql;
-
-        CREATE TRIGGER trigger_check_non_completed_goal_count
-        BEFORE INSERT OR UPDATE ON goal
-        FOR EACH ROW
-        WHEN (NEW.completed = false)
-        EXECUTE FUNCTION enforce_max_non_completed_goals();
+            CREATE OR REPLACE FUNCTION enforce_max_non_completed_goals()
+            RETURNS TRIGGER AS $$
+            BEGIN
+                IF NEW.completed = false THEN
+                    -- Count the number of incomplete goals for the user.
+                    IF (SELECT COUNT(*) FROM goal g
+                        JOIN usergoals ug ON g.id = ug."goalId"
+                        WHERE ug."userId" = NEW.userId AND g.completed = false) >= 8 THEN
+                        RAISE EXCEPTION 'Cannot have more than 8 non-completed goals per user';
+                    END IF;
+                END IF;
+                RETURN NEW;
+            END;
+            $$ LANGUAGE plpgsql;
         `;
 
         await queryRunner.query(limitNumberNotCompletedRows);
