@@ -19,11 +19,11 @@ async function main() {
     await seedUsers(queryRunner);
     console.log('Users have been seeded!');
 
-    await seedExercises(queryRunner);
-    console.log('Exercises have been seeded!');
+    // await seedExercises(queryRunner);
+    // console.log('Exercises have been seeded!');
 
-    await seedUserExercises(queryRunner);
-    console.log('UserExercises have been seeded!');
+    // await seedUserExercises(queryRunner);
+    // console.log('UserExercises have been seeded!');
 
     await seedGoals(queryRunner);
     console.log('Goals have been seeded!');
