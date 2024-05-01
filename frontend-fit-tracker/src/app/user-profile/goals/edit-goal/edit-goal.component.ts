@@ -7,6 +7,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatRadioModule } from '@angular/material/radio';
 
 @Component({
   selector: 'app-edit-goal',
@@ -18,6 +19,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
+    MatRadioModule,
     NgIf,
   ],
   providers: [provideNativeDateAdapter()],
@@ -39,6 +41,7 @@ export class EditGoalComponent implements OnInit {
     this.goalForm = new FormGroup({
       title: new FormControl(this.goal.title, [Validators.required]),
       notes: new FormControl(this.goal.notes, [Validators.required]),
+      // type: new FormControl(null, [Validators.required]),
       deadline: new FormControl(this.goal.deadline, [Validators.required]),
     });
   }
