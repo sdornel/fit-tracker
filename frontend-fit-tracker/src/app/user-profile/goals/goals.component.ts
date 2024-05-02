@@ -94,7 +94,12 @@ export class GoalsComponent implements OnInit, OnDestroy {
   }
 
   openCreateGoalModal() {
-    const dialogRef = this.dialog.open(CreateGoalComponent);
+    const dialogRef = this.dialog.open(CreateGoalComponent, {
+      data: {
+        long: this.longTermGoals.length,
+        short: this.shortTermGoals.length,
+      }
+    });
 
     dialogRef.afterClosed().subscribe((result: Goal) => {
       if (result) {

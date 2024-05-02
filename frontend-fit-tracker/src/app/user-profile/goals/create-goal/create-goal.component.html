@@ -27,8 +27,8 @@
   </mat-form-field>
 
   <mat-radio-group matInput formControlName="type">
-      <mat-radio-button value="short">Short-term</mat-radio-button>
-      <mat-radio-button value="long">Long-term</mat-radio-button>
+      <mat-radio-button value="short" [disabled]="data.short >= 4">Short-term (4 allowed)</mat-radio-button>
+      <mat-radio-button value="long" [disabled]="data.long >= 4">Long-term (4 allowed)</mat-radio-button>
   </mat-radio-group>
 
   <mat-form-field>

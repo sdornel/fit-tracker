@@ -1,7 +1,7 @@
 import { NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -30,7 +30,9 @@ export class CreateGoalComponent {
   goalForm!: FormGroup;
   minDate: Date = new Date();
 
-  constructor(private dialogRef: MatDialogRef<CreateGoalComponent>,) {}
+  constructor(private dialogRef: MatDialogRef<CreateGoalComponent>,
+  @Inject(MAT_DIALOG_DATA) public data: { long: number; short: number; }
+  ) {}
 
   ngOnInit(): void {
     this.buildForm();
