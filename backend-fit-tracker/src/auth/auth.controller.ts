@@ -22,7 +22,7 @@ export class AuthController {
     return req.user;
   }
 
-  // this function doesn't really do anything at the moment. i need to properly expire/remove the token in the future
+  // this function doesn't do anything at the moment. i need to properly expire/remove the token in the future
   @Post('logout')
   logout(@Req() req: Request, @Res() res: Response): any {
     return res.status(200).send({ message: 'Logged out successfully' });
