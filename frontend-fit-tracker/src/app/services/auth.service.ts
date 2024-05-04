@@ -16,8 +16,6 @@ export class AuthService {
   isAuthenticated = false;
   private isAuthenticated$ = new BehaviorSubject<boolean>(false);
   user!: User | null;
-  private userSubject = new BehaviorSubject<User | null>(null);
-  user$ = this.userSubject.asObservable(); 
 
   constructor(
     private http: HttpClient,
@@ -34,8 +32,8 @@ export class AuthService {
         first()
       ).subscribe((userData) => {
         try {
-          this.userSubject.next(userData);
           this.user = userData;
+          sessionStorage.setItem('loggedIn', 'true');
           this.router.navigate(['/user']);
         } catch (error) {
           console.error('Error logging in:', error);
@@ -44,8 +42,13 @@ export class AuthService {
   }
 
   logout(): void {
-    // incomplete! you need to add API route
-    this.router.navigate(['/login']);
+    console.log('logging out');
+    // this.http.post(`${this.apiUrl}/logout`, {}).pipe(
+    //   first()
+    // ).subscribe((msg: any) => {
+      sessionStorage.clear();
+      this.router.navigate(['/login']);
+    // });
   }
 
   checkAuthentication(): Observable<boolean> {
@@ -58,18 +61,15 @@ export class AuthService {
             }
   
             this.user = user;
-            this.userSubject.next(user);
             this.isAuthenticated$.next(true);
             return true;
           } else {
-              this.userSubject.next(null);
               this.isAuthenticated$.next(false);
               return false;
           }
         }),
         catchError(error => {
           console.error('Authentication error:', error);
-          this.userSubject.next(null);
           this.isAuthenticated$.next(false);
           return of(false); // remember that of is deprecated
         }),

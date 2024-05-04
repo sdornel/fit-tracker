@@ -13,7 +13,7 @@ export const dataSourceOptions: DataSourceOptions = {
     database: process.env.DB_NAME,
     migrations: ['dist/db/migrations/*.js'],
     entities: ['dist/entities/*.entity.js'],
-    logging: true
+    // logging: true
 }
 const dataSource = new DataSource(dataSourceOptions)
 export default dataSource
