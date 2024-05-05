@@ -17,8 +17,7 @@ export class UserService {
     private http: HttpClient,
   ) {}
 
-  updateUser(id: number, updatedUser: User) {
-    console.log('updatedUser', updatedUser);
+  updateUser(id: number, updatedUser: User): Observable<User> {
     const formData = new FormData();
     formData.append('name', updatedUser.name);
     formData.append('email', updatedUser.email);

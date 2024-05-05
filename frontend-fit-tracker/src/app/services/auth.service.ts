@@ -20,7 +20,6 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private userService: UserService,
   ) {}
 
   login(loginDetails: { email: string; password: string }): void {
@@ -42,13 +41,8 @@ export class AuthService {
   }
 
   logout(): void {
-    console.log('logging out');
-    // this.http.post(`${this.apiUrl}/logout`, {}).pipe(
-    //   first()
-    // ).subscribe((msg: any) => {
       sessionStorage.clear();
       this.router.navigate(['/login']);
-    // });
   }
 
   checkAuthentication(): Observable<boolean> {
