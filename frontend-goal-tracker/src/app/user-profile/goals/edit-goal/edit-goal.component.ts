@@ -46,7 +46,7 @@ export class EditGoalComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     const updatedGoal = {
       ...this.goal,
       ...this.goalForm.value

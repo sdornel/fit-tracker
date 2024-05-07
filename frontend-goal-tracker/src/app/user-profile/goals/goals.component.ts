@@ -41,14 +41,14 @@ export class GoalsComponent implements OnInit, OnDestroy {
     this.fetchGoals();
   }
 
-  fetchGoals() {
+  fetchGoals(): void {
     this.goalService.fetchGoals().subscribe(goals => {
       this.longTermGoals = goals.long;
       this.shortTermGoals = goals.short;
     });
   }
 
-  goalCompleted(goal: Goal) {
+  goalCompleted(goal: Goal): void {
     const dialogRef = this.dialog.open(CompleteGoalComponent);
 
     dialogRef.afterClosed().subscribe(result => {
@@ -67,7 +67,7 @@ export class GoalsComponent implements OnInit, OnDestroy {
     })
   }
 
-  openEditGoalModal(goal: Goal) {
+  openEditGoalModal(goal: Goal): void {
     const dialogRef = this.dialog.open(EditGoalComponent, {
       data: goal,
     });
@@ -79,7 +79,7 @@ export class GoalsComponent implements OnInit, OnDestroy {
     });
   }
 
-  handleUpdate(goal: Goal) {
+  handleUpdate(goal: Goal): void {
     this.subscriptions?.add(
       this.goalService.updateGoal(goal).subscribe(
         (updatedGoal: Goal) => {
@@ -93,7 +93,7 @@ export class GoalsComponent implements OnInit, OnDestroy {
     );
   }
 
-  openCreateGoalModal() {
+  openCreateGoalModal(): void {
     const dialogRef = this.dialog.open(CreateGoalComponent, {
       data: {
         long: this.longTermGoals.length,
@@ -108,7 +108,7 @@ export class GoalsComponent implements OnInit, OnDestroy {
     });
   }
 
-  handleCreate(goal: Goal) {
+  handleCreate(goal: Goal): void {
     this.subscriptions?.add(
       this.goalService.createGoal(goal).subscribe(goal => {
         goal.type === 'long' ? this.longTermGoals.push(goal) : this.shortTermGoals.push(goal);
@@ -116,13 +116,13 @@ export class GoalsComponent implements OnInit, OnDestroy {
     );
   }
 
-  openGoalViewModal(goal: Goal) {
+  openGoalViewModal(goal: Goal): void {
     this.dialog.open(GoalDetailModalComponent, {
       data: goal,
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscriptions?.unsubscribe();
   }
 }

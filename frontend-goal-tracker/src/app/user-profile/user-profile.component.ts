@@ -43,7 +43,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.user = this.authService.user;
     if (this.user?.photo) {
       this.photoUrlPath = `http://localhost:3000/${this.user.photo}`;
@@ -51,7 +51,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     this.getNumberAccomplishedGoals();
   }
 
-  openEditModalDialog() {
+  openEditModalDialog(): void {
     const dialogRef = this.dialog.open(UserProfileEditComponent, {
       data: this.user,
     });
@@ -66,16 +66,12 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     });
   }
 
-  openPreviousGoalModalDialog() {
-    // ask user for date ranges
-  }
-
   openDeleteModalDialog() {
     // just make "are you sure y/n" modal
     console.log('deleting account');
   }
 
-  getNumberAccomplishedGoals() {
+  getNumberAccomplishedGoals(): void {
     this.goalService.getNumberAccomplishedGoals(this.authService.user!.id).subscribe((count: number) => {
       this.goalService.goalsCompleted.next(count);
     });
@@ -85,7 +81,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     })
   }
 
-  generateDataUrlForImmediateDisplay(result: User) {
+  generateDataUrlForImmediateDisplay(result: User): void {
     const reader = new FileReader();
     reader.onload = (event: ProgressEvent<FileReader>) => {
       if (event.target && event.target.result) {
@@ -96,12 +92,12 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     reader.readAsDataURL(result.photo);
   }
 
-  handleUpdate(userId: number, updatedUser: User) {
+  handleUpdate(userId: number, updatedUser: User): void {
     // remember to consider .add in future if need be
     this.subscription = this.userService.updateUser(userId, updatedUser).subscribe(user => this.user = user);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscription?.unsubscribe();
   }
 }
