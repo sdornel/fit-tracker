@@ -43,7 +43,7 @@ export class UserProfileEditComponent implements OnInit, OnChanges {
     });
   }
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     if (this.user && this.userForm) {
       this.userForm.setValue({
         name: this.user.name,
@@ -55,8 +55,8 @@ export class UserProfileEditComponent implements OnInit, OnChanges {
     }
   }
 
-  onFileChange(event: any) {
-    const file = event.target.files[0];
+  onFileChange(event: any): void {
+    const file: File = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
@@ -67,7 +67,7 @@ export class UserProfileEditComponent implements OnInit, OnChanges {
     }
   }
 
-  onSubmit() {
+  onSubmit(): void {
     const updatedUser = {
       ...this.user,
       ...this.userForm.value
