@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import { User } from '../models/user';
+import { MatDialog } from '@angular/material/dialog';
+import { UserRegisterComponent } from './user-register/user-register.component';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +18,7 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -31,6 +35,10 @@ export class LoginComponent {
   }
 
   register(): void {
+    const dialogRef = this.dialog.open(UserRegisterComponent);
 
+    dialogRef.afterClosed().subscribe((result: User) => {
+
+    });
   }
 }
