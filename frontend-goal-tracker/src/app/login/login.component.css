@@ -66,6 +66,13 @@ input[type="password"] {
     background-color: #e63946;
 }
 
+.register-text {
+    color: blue;
+    text-decoration: underline;
+    text-align: center;
+    cursor: pointer;
+  }
+
 /* Responsive adjustments */
 @media (max-width: 400px) {
     form {
