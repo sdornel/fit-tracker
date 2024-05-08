@@ -28,4 +28,8 @@ export class UserService {
     }
     return this.http.patch<User>(`${this.apiUrl}/${id}`, formData);
   }
+
+  register(email: string, password: string): void {
+    
+  }
 }
