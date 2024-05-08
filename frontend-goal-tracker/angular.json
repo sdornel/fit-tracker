@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "frontend-fit-tracker": {
+    "frontend-goal-tracker": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/frontend-fit-tracker",
+            "outputPath": "dist/frontend-goal-tracker",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -58,10 +58,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "frontend-fit-tracker:build:production"
+              "buildTarget": "frontend-goal-tracker:build:production"
             },
             "development": {
-              "buildTarget": "frontend-fit-tracker:build:development"
+              "buildTarget": "frontend-goal-tracker:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -69,7 +69,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "frontend-fit-tracker:build"
+            "buildTarget": "frontend-goal-tracker:build"
           }
         },
         "test": {

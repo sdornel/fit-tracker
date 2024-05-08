@@ -1,5 +1,5 @@
 {
-  "name": "frontend-fit-tracker",
+  "name": "frontend-goal-tracker",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

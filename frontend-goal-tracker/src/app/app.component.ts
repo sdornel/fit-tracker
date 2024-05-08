@@ -11,5 +11,5 @@ import { NavbarComponent } from './footer-and-navbar/navbar/navbar.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'frontend-fit-tracker';
+  title = 'frontend-goal-tracker';
 }

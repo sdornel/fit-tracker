@@ -1,4 +1,4 @@
-# fit-tracker
+# goal-tracker
 
 i want to create a full stack application
 i will have angular frontend, nestjs backend, postgres database
