@@ -1,1 +1,18 @@
-<p>user-register works!</p>
+<div class="register-container">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <h2>Register</h2>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" formControlName="email" class="form-control" id="email" placeholder="Enter email">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" formControlName="password" class="form-control" id="password" placeholder="Password">
+      </div>
+      <div class="form-group">
+        <label for="confirm-password">Password</label>
+        <input type="confirm-password" formControlName="confirmPassword" class="form-control" id="confirm-password" placeholder="Confirm password">
+      </div>
+      <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</div>
