@@ -5,14 +5,6 @@ body, html {
     background: linear-gradient(to right, #ff512f, #dd2476);
 }
 
-.user-profile-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    padding-top: 100px;
-}
-
 form {
     background: white;
     padding: 40px;
