@@ -1,18 +1,92 @@
-<div class="register-container">
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-      <h2>Register</h2>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" formControlName="email" class="form-control" id="email" placeholder="Enter email">
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" formControlName="password" class="form-control" id="password" placeholder="Password">
-      </div>
-      <div class="form-group">
-        <label for="confirm-password">Password</label>
-        <input type="confirm-password" formControlName="confirmPassword" class="form-control" id="confirm-password" placeholder="Confirm password">
-      </div>
-      <button type="submit" class="btn btn-primary">Register</button>
-    </form>
-</div>
+<!-- <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" placeholder="Enter your email" />
+      <mat-error *ngIf="registerForm.get('email')?.hasError('required')">
+        Email is required
+      </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        type="password"
+        formControlName="password"
+        placeholder="Enter your password"
+      />
+      <mat-error *ngIf="registerForm.get('password')?.hasError('required')">
+        Password is required
+      </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Confirm Password</mat-label>
+      <input
+        matInput
+        type="password"
+        formControlName="confirmPassword"
+        placeholder="Confirm your password"
+      />
+      <mat-error *ngIf="registerForm.get('confirmPassword')?.hasError('required')">
+        Confirm Password is required
+      </mat-error>
+      <mat-error *ngIf="passwordMismatch">
+        Passwords do not match
+      </mat-error>
+    </mat-form-field>
+  
+    <button mat-raised-button type="submit" [disabled]="registerForm.invalid">
+      Register
+    </button>
+</form> -->
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <h2>Register</h2>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <textarea
+        matInput
+        placeholder="Your email"
+        type="text"
+        formControlName="email"
+        id="email"
+      >
+      </textarea>
+      <mat-error>This field is required</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="password"
+          formControlName="password"
+          placeholder="Enter your password"
+        />
+        <mat-error *ngIf="registerForm.get('password')?.hasError('required')">
+            This field is required
+        </mat-error>
+      </mat-form-field>
+    
+    <mat-form-field appearance="fill">
+        <mat-label>Confirm Password</mat-label>
+        <input
+          matInput
+          type="password"
+          formControlName="confirmPassword"
+          placeholder="Confirm your password"
+        />
+        <mat-error *ngIf="registerForm.get('confirmPassword')?.hasError('required')">
+          This field is required
+        </mat-error>
+        <mat-error *ngIf="passwordMismatch">
+          Passwords do not match
+        </mat-error>
+    </mat-form-field>
+  
+    <mat-dialog-actions>
+      <button mat-button [disabled]="registerForm.pristine || !this.registerForm.valid" class="btn btn-primary">Save Changes</button>
+    </mat-dialog-actions>
+</form>
+  
