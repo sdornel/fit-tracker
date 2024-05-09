@@ -1,4 +1,4 @@
-import { Body, Controller, Get, NotFoundException, Param, ParseIntPipe, Patch, Req, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, NotFoundException, Param, ParseIntPipe, Patch, Post, Req, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { UserService } from './user.service';
 import { Users } from 'src/entities/user.entity';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -49,6 +49,11 @@ export class UserController {
       user.photo = file.path;
   }
     return this.userService.update(id, user, file);
+  }
+
+  @Post()
+  create(@Body() signupData: { email: string; password: string; }) {
+    return this.userService.create(signupData);
   }
 
   @Get('photo/:filename')

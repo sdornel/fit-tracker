@@ -18,8 +18,8 @@ export class UserService {
     return this.userRepository.findUserById(id);
   }
 
-  create(user: Users): Promise<Users> {
-    return this.userRepository.save(user);
+  create(signupData: { email: string; password: string; }): Promise<Users> {
+    return this.userRepository.save(signupData);
   }
 
   async update(id: number, user: Partial<Users>, file: Express.Multer.File): Promise<Users> {
