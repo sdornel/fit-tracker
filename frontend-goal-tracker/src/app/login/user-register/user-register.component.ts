@@ -42,7 +42,7 @@ export class UserRegisterComponent implements OnInit {
         confirmPassword: ['', [Validators.required]],
       },
       {
-        validator: this.customValidationService.passwordMatchValidator(),
+        validator: [this.customValidationService.passwordMatchValidator()],
       }
     );
   }
@@ -53,14 +53,5 @@ export class UserRegisterComponent implements OnInit {
       const password = this.registerForm.value.password;
       this.userService.register(email, password);
     }
-  }
-
-  get passwordMismatch() {
-    console.log('got here');
-    return;
-    // return (
-    //   this.registerForm.errors?.['passwordMismatch'] &&
-    //   this.registerForm.get('confirmPassword')?.touched
-    // );
   }
 }
