@@ -28,8 +28,8 @@ export class UserService {
     return this.http.patch<User>(`${this.apiUrl}/${id}`, formData);
   }
 
-  register(email: string, password: string): Observable<any> {
-    const userData: { email: string; password: string; } = { email, password };
+  register(name: string, email: string, password: string): Observable<any> {
+    const userData: { name: string; email: string; password: string; } = { name, email, password };
 
     return this.http.post<User>(`${this.apiUrl}`, userData);
   }

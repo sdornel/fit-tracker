@@ -4,6 +4,8 @@ import { AuthService } from '../services/auth.service';
 import { User } from '../models/user';
 import { MatDialog } from '@angular/material/dialog';
 import { UserRegisterComponent } from './user-register/user-register.component';
+import { Subscription } from 'rxjs';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +14,14 @@ import { UserRegisterComponent } from './user-register/user-register.component';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent implements OnInit { 
+export class LoginComponent implements OnInit {
+  subscription: Subscription = new Subscription();
   loginForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private userService: UserService,
     private dialog: MatDialog,
   ) {}
 
@@ -37,8 +41,12 @@ export class LoginComponent implements OnInit {
   register(): void {
     const dialogRef = this.dialog.open(UserRegisterComponent);
 
-    dialogRef.afterClosed().subscribe((result: User) => {
-
+    dialogRef.afterClosed().subscribe((result: { name: string; email: string; password: string; }) => {
+      this.subscription = this.userService.register(result.name, result.email, result.password).subscribe();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
