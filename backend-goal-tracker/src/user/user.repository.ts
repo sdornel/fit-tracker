@@ -16,8 +16,8 @@ export class UserRepository extends Repository<Users> {
         return this.findOneBy({ id });
     }
     
-    createUser(user: Users): Promise<Users> {
-        return this.save(user);
+    createUser(signupData: { email: string; password: string; }): Promise<Users> {
+        return this.save(signupData);
     }
     
     async updateUser(id: number, userData: Partial<Users>): Promise<Users> {
