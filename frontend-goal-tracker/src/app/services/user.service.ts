@@ -28,7 +28,9 @@ export class UserService {
     return this.http.patch<User>(`${this.apiUrl}/${id}`, formData);
   }
 
-  register(email: string, password: string): void {
-    
+  register(email: string, password: string): Observable<any> {
+    const userData: { email: string; password: string; } = { email, password };
+
+    return this.http.post<User>(`${this.apiUrl}`, userData);
   }
 }
