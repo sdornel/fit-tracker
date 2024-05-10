@@ -1,6 +1,19 @@
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <h2>Register</h2>
     <mat-form-field>
+      <mat-label>Name</mat-label>
+      <textarea
+        matInput
+        placeholder="Your name"
+        type="text"
+        formControlName="name"
+        id="name"
+      >
+      </textarea>
+      <mat-error>This field is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
       <mat-label>Email</mat-label>
       <textarea
         matInput

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { CustomValidationService } from '../../services/custom-validators.service';
 import { NgIf } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -25,7 +25,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './user-register.component.html',
   styleUrl: './user-register.component.css'
 })
-export class UserRegisterComponent implements OnInit, OnDestroy {
+export class UserRegisterComponent implements OnInit {
   registerForm!: FormGroup;
   subscription: Subscription = new Subscription();
 
@@ -33,12 +33,13 @@ export class UserRegisterComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private userService: UserService,
     private customValidationService: CustomValidationService,
-    private dialog: MatDialog,
+    private dialogRef: MatDialogRef<UserRegisterComponent>
   ) {}
 
   ngOnInit(): void {
     this.registerForm = this.fb.group(
       {
+        name: ['', [Validators.required]],
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required]],
         confirmPassword: ['', [Validators.required]],
@@ -51,13 +52,15 @@ export class UserRegisterComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     if (this.registerForm.valid) {
+      const name = this.registerForm.value.name;
       const email = this.registerForm.value.email;
       const password = this.registerForm.value.password;
-      this.subscription = this.userService.register(email, password).subscribe();
+      if (this.dialogRef) {
+        const createdGoal = {
+          ...this.registerForm.value,
+        }
+        this.dialogRef.close(createdGoal);
+      }
     }
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 }
