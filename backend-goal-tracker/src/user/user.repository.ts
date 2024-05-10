@@ -16,7 +16,7 @@ export class UserRepository extends Repository<Users> {
         return this.findOneBy({ id });
     }
     
-    createUser(signupData: { email: string; password: string; }): Promise<Users> {
+    createUser(signupData: { name: string; email: string; password: string; }): Promise<Users> {
         return this.save(signupData);
     }
     

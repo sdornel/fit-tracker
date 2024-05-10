@@ -18,7 +18,7 @@ export class UserService {
     return this.userRepository.findUserById(id);
   }
 
-  create(signupData: { email: string; password: string; }): Promise<Users> {
+  create(signupData: { name: string; email: string; password: string; }): Promise<Users> {
     return this.userRepository.createUser(signupData);
   }
 

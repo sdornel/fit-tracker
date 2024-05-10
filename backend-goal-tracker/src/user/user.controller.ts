@@ -52,7 +52,7 @@ export class UserController {
   }
 
   @Post()
-  create(@Body() signupData: { email: string; password: string; }) {
+  create(@Body() signupData: { name: string; email: string; password: string; }) {
     return this.userService.create(signupData);
   }
 
