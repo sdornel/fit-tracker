@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-register',
@@ -24,8 +25,9 @@ import { MatListModule } from '@angular/material/list';
   templateUrl: './user-register.component.html',
   styleUrl: './user-register.component.css'
 })
-export class UserRegisterComponent implements OnInit {
+export class UserRegisterComponent implements OnInit, OnDestroy {
   registerForm!: FormGroup;
+  subscription: Subscription = new Subscription();
 
   constructor(
     private fb: FormBuilder,
@@ -51,7 +53,11 @@ export class UserRegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       const email = this.registerForm.value.email;
       const password = this.registerForm.value.password;
-      this.userService.register(email, password);
+      this.subscription = this.userService.register(email, password).subscribe();
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
