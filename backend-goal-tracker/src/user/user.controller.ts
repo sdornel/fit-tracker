@@ -57,7 +57,7 @@ export class UserController {
   }
 
   @Get('photo/:filename')
-  servePhoto(@Param('filename') filename: string, @Res() res): any {
+  servePhoto(@Param('filename') filename: string, @Res() res): void {
     res.sendFile(filename, { root: './uploads' });
   }
 }
