@@ -68,7 +68,7 @@ export class UserProfileEditComponent implements OnInit, OnChanges {
   }
 
   onSubmit(): void {
-    const updatedUser = {
+    const updatedUser: User = {
       ...this.user,
       ...this.userForm.value
     }

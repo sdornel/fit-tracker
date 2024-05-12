@@ -52,9 +52,6 @@ export class UserRegisterComponent implements OnInit {
 
   onSubmit(): void {
     if (this.registerForm.valid) {
-      const name = this.registerForm.value.name;
-      const email = this.registerForm.value.email;
-      const password = this.registerForm.value.password;
       if (this.dialogRef) {
         const createdGoal = {
           ...this.registerForm.value,

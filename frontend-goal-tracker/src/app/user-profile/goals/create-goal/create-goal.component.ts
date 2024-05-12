@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
+import { Goal } from '../../../models/goal';
 
 @Component({
   selector: 'app-create-goal',
@@ -49,7 +50,7 @@ export class CreateGoalComponent {
 
   onSubmit(): void {
     if (this.dialogRef) {
-      const createdGoal = {
+      const createdGoal: Goal = {
         ...this.goalForm.value,
         completed: false,
       }
