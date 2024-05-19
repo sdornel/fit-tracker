@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
-import { User } from '../models/user';
 import { MatDialog } from '@angular/material/dialog';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { Subscription } from 'rxjs';

@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject, Subscription, catchError, first, map, of, switchMap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable, catchError, first, map, of } from 'rxjs';
 import { environment } from '../../environment';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
-import { UserService } from './user.service';
 
 
 @Injectable({
@@ -69,7 +68,6 @@ export class AuthService {
         }),
       );
   }
-
 
   get isLoggedIn(): Observable<boolean> {
     return this.isAuthenticated$.asObservable();
