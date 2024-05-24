@@ -48,6 +48,8 @@ export class UserProfileEditComponent implements OnInit, OnChanges {
       this.userForm.setValue({
         name: this.user.name,
         email: this.user.email,
+        password: this.user.password,
+        photo: this.user.photo || null
       });
       if (this.user.photo) {
         this.imagePreview = this.user.photo;
