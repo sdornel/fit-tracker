@@ -6,7 +6,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
-fdescribe('UserProfileEditComponent', () => {
+describe('UserProfileEditComponent', () => {
   let component: UserProfileEditComponent;
   let fixture: ComponentFixture<UserProfileEditComponent>;
   let mockDialogRef: any;
